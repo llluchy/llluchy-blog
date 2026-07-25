@@ -206,8 +206,15 @@ const aboutBullets = {
 <style>
 	.hero {
 		position: relative;
-		padding: 6rem 0 4rem;
+		padding: 6rem 1.5rem 4rem;
 		overflow: hidden;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	@media (max-width: 768px) {
+		.hero {
+			padding: 4rem 1rem 3rem;
+		}
 	}
 	.hero-bg {
 		position: absolute;

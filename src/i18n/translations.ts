@@ -3,7 +3,7 @@ export const languages = {
 	zh: '中文',
 };
 
-export const defaultLang = 'en';
+export const defaultLang = 'zh';
 
 export const translations = {
 	en: {
@@ -13,7 +13,7 @@ export const translations = {
 		'nav.projects': 'Projects',
 
 		'hero.greeting': "Hi, I'm",
-		'hero.name': 'Alex Chen',
+		'hero.name': 'llluchy',
 		'hero.title': 'Full-Stack Developer & Tech Enthusiast',
 		'hero.description':
 			'Building elegant solutions to complex problems. Passionate about clean code, open source, and continuous learning.',
@@ -59,7 +59,7 @@ export const translations = {
 		'nav.projects': '作品',
 
 		'hero.greeting': '你好，我是',
-		'hero.name': '陈 Alex',
+		'hero.name': 'llluchy',
 		'hero.title': '全栈开发者 & 技术爱好者',
 		'hero.description':
 			'致力于用优雅的方式解决复杂问题。热爱简洁代码、开源社区和持续学习。',
