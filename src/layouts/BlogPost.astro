@@ -6,83 +6,145 @@ import Comments from '../components/Comments.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL;
 
 type Props = CollectionEntry<'blog'>['data'];
-
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
-
 	<body>
 		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+		<main class="post-main">
+			<article class="post-article">
+				<a href={`${base}/blog`} class="back-link">← {t('blog.backToList')}</a>
+				{heroImage && (
+					<div class="post-hero">
+						<Image width={1020} height={510} src={heroImage} alt="" />
 					</div>
+				)}
+				<header class="post-header">
+					<div class="post-meta">
+						<span class="post-date">
+							{t('blog.publishedOn')} <FormattedDate date={pubDate} />
+						</span>
+						{
+							updatedDate && (
+								<span class="post-updated">
+									{t('blog.updatedOn')} <FormattedDate date={updatedDate} />
+								</span>
+							)
+						}
+					</div>
+					<h1 class="post-title">{title}</h1>
+					<p class="post-desc">{description}</p>
+				</header>
+				<div class="post-content">
 					<slot />
-					<Comments />
 				</div>
+				<Comments />
 			</article>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.post-main {
+		max-width: 760px;
+		padding: 2rem 1.5rem 4rem;
+		margin: 0 auto;
+	}
+	.back-link {
+		display: inline-block;
+		margin-bottom: 2rem;
+		color: rgb(var(--text-muted));
+		font-weight: 500;
+		font-size: 0.9rem;
+		transition: color 0.2s ease;
+	}
+	.back-link:hover {
+		color: var(--accent);
+	}
+	.post-article {
+		background: rgb(var(--bg-elevated));
+		border-radius: var(--radius-xl);
+		padding: 2.5rem;
+		box-shadow: var(--shadow-card);
+		border: 1px solid rgb(var(--border-light));
+	}
+	.post-hero {
+		margin: -2.5rem -2.5rem 2rem -2.5rem;
+		overflow: hidden;
+		border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+	}
+	.post-hero :global(img) {
+		width: 100%;
+		display: block;
+	}
+	.post-header {
+		margin-bottom: 2rem;
+	}
+	.post-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		font-size: 0.85rem;
+		color: rgb(var(--text-light));
+		margin-bottom: 1rem;
+	}
+	.post-title {
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		line-height: 1.2;
+		margin-bottom: 0.75rem;
+	}
+	.post-desc {
+		font-size: 1.05rem;
+		color: rgb(var(--text-muted));
+		margin: 0;
+	}
+	.post-content {
+		line-height: 1.85;
+	}
+	.post-content :global(h2) {
+		margin-top: 2rem;
+		padding-top: 1rem;
+		border-top: 1px solid rgb(var(--border-light));
+	}
+	.post-content :global(h3) {
+		margin-top: 1.5rem;
+	}
+	.post-content :global(p) {
+		margin-bottom: 1.25rem;
+	}
+	.post-content :global(ul),
+	.post-content :global(ol) {
+		padding-left: 1.5rem;
+		margin-bottom: 1.25rem;
+	}
+	.post-content :global(li) {
+		margin-bottom: 0.5rem;
+	}
+	.post-content :global(img) {
+		border-radius: var(--radius-md);
+		margin: 1.5rem 0;
+	}
+	@media (max-width: 640px) {
+		.post-main {
+			padding: 1rem 1rem 3rem;
+		}
+		.post-article {
+			padding: 1.5rem;
+		}
+		.post-hero {
+			margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+		}
+	}
+</style>

@@ -5,7 +5,12 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_TITLE } from '../../consts';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL;
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -13,102 +18,113 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
+		<BaseHead title={`${t('nav.blog')} | ${SITE_TITLE}`} description="Blog articles" />
 	</head>
 	<body>
 		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`}>
-									{post.data.heroImage && (
+		<main class="blog-list-main">
+			<section class="section">
+				<h1 class="section-title gradient-text">{t('nav.blog')}</h1>
+				<p class="section-subtitle">{t('section.blog.subtitle')}</p>
+
+				{posts.length === 0 ? (
+					<p class="no-posts">{t('blog.noPosts')}</p>
+				) : (
+					<div class="blog-grid">
+						{posts.map((post) => (
+							<a href={`${base}/blog/${post.id}/`} class="blog-card">
+								{post.data.heroImage && (
+									<div class="blog-card-image">
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
+									</div>
+								)}
+								<div class="blog-card-content">
+									<div class="blog-date">
 										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
+									</div>
+									<h3>{post.data.title}</h3>
+									<p>{post.data.description}</p>
+									<span class="read-more">{t('blog.readMore')} →</span>
+								</div>
+							</a>
+						))}
+					</div>
+				)}
 			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.blog-list-main {
+		padding-bottom: 4rem;
+	}
+	.no-posts {
+		text-align: center;
+		color: rgb(var(--text-muted));
+		font-size: 1.1rem;
+		padding: 3rem 0;
+	}
+	.blog-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 1.5rem;
+	}
+	.blog-card {
+		display: flex;
+		flex-direction: column;
+		background: rgb(var(--bg-elevated));
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		transition: all 0.3s ease;
+		border: 1px solid rgb(var(--border-light));
+		color: inherit;
+		text-decoration: none;
+	}
+	.blog-card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-xl);
+	}
+	.blog-card-image {
+		aspect-ratio: 16/9;
+		overflow: hidden;
+	}
+	.blog-card-image :global(img) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+	.blog-card:hover .blog-card-image :global(img) {
+		transform: scale(1.03);
+	}
+	.blog-card-content {
+		padding: 1.5rem;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.blog-date {
+		font-size: 0.8rem;
+		color: rgb(var(--text-light));
+		margin-bottom: 0.75rem;
+	}
+	.blog-card-content h3 {
+		margin-bottom: 0.5rem;
+		font-size: 1.15rem;
+		line-height: 1.4;
+	}
+	.blog-card-content p {
+		font-size: 0.9rem;
+		margin-bottom: 1rem;
+		flex: 1;
+	}
+	.read-more {
+		color: var(--accent);
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+</style>
