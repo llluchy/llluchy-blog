@@ -9,6 +9,10 @@ export default defineConfig({
 	site: 'https://llluchy.github.io',
 	base: '/llluchy-blog',
 	trailingSlash: 'ignore',
+	i18n: {
+		defaultLocale: 'en',
+		locales: ['en', 'zh'],
+	},
 	integrations: [mdx(), sitemap()],
 	fonts: [
 		{

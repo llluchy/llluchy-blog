@@ -2,48 +2,491 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getCollection } from 'astro:content';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL;
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const skills = {
+	frontend: ['React', 'Vue', 'TypeScript', 'Astro', 'Tailwind CSS', 'Next.js'],
+	backend: ['Node.js', 'Python', 'Go', 'PostgreSQL', 'Redis', 'Docker'],
+	devops: ['Git', 'CI/CD', 'AWS', 'Linux', 'Nginx', 'Kubernetes'],
+	design: ['Figma', 'UI/UX', 'Responsive Design', 'SEO'],
+};
+
+const projects = [
+	{
+		title: { en: 'E-Commerce Platform', zh: '电商平台' },
+		desc: {
+			en: 'Full-stack shopping platform with payment integration',
+			zh: '集成支付的全栈购物平台',
+		},
+		tags: ['React', 'Node.js', 'MongoDB'],
+		icon: '🛒',
+	},
+	{
+		title: { en: 'Task Management App', zh: '任务管理应用' },
+		desc: {
+			en: 'Collaborative task manager with real-time updates',
+			zh: '支持实时更新的协作任务管理器',
+		},
+		tags: ['Vue', 'WebSocket', 'PostgreSQL'],
+		icon: '✅',
+	},
+	{
+		title: { en: 'Analytics Dashboard', zh: '数据分析看板' },
+		desc: {
+			en: 'Interactive dashboard for business metrics visualization',
+			zh: '业务指标可视化交互看板',
+		},
+		tags: ['D3.js', 'Python', 'FastAPI'],
+		icon: '📊',
+	},
+];
+
+const aboutBullets = {
+	en: [
+		'Full-stack developer with 5+ years of experience',
+		'Passionate about open source and community building',
+		'Love exploring new technologies and sharing knowledge',
+	],
+	zh: [
+		'5年以上全栈开发经验',
+		'热爱开源和社区建设',
+		'喜欢探索新技术并分享知识',
+	],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
+
+		<section class="hero">
+			<div class="hero-bg">
+				<div class="blob blob-1"></div>
+				<div class="blob blob-2"></div>
+				<div class="blob blob-3"></div>
+			</div>
+			<div class="hero-content">
+				<div class="hero-text">
+					<p class="hero-greeting animate-fade-in-up">{t('hero.greeting')}</p>
+					<h1 class="hero-name animate-fade-in-up" style="animation-delay: 0.1s">
+						<span class="gradient-text">{t('hero.name')}</span>
+					</h1>
+					<h2 class="hero-title animate-fade-in-up" style="animation-delay: 0.2s">
+						{t('hero.title')}
+					</h2>
+					<p class="hero-desc animate-fade-in-up" style="animation-delay: 0.3s">
+						{t('hero.description')}
+					</p>
+					<div class="hero-cta animate-fade-in-up" style="animation-delay: 0.4s">
+						<a href={`${base}/about`} class="btn btn-primary">
+							{t('hero.cta.projects')}
+							<span>→</span>
+						</a>
+						<a href={`${base}/blog`} class="btn btn-secondary">
+							{t('hero.cta.blog')}
+						</a>
+					</div>
+				</div>
+				<div class="hero-visual animate-float">
+					<div class="avatar-ring">
+						<div class="avatar">
+							<span class="avatar-emoji">👨‍💻</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section about-section">
+			<div class="about-card">
+				<h2 class="section-title">{t('section.about')}</h2>
+				<p class="section-subtitle">{t('section.about.subtitle')}</p>
+				<ul class="about-bullets">
+					{aboutBullets[lang].map((item) => (
+						<li>
+							<span class="check">✓</span>
+							{item}
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+
+		<section class="section skills-section">
+			<h2 class="section-title">{t('section.skills')}</h2>
+			<p class="section-subtitle">{t('section.skills.subtitle')}</p>
+			<div class="skills-grid">
+				<div class="skill-card">
+					<div class="skill-icon">🎨</div>
+					<h3>{t('skill.frontend')}</h3>
+					<div class="skill-tags">
+						{skills.frontend.map((s) => <span class="tag">{s}</span>)}
+					</div>
+				</div>
+				<div class="skill-card">
+					<div class="skill-icon">⚙️</div>
+					<h3>{t('skill.backend')}</h3>
+					<div class="skill-tags">
+						{skills.backend.map((s) => <span class="tag">{s}</span>)}
+					</div>
+				</div>
+				<div class="skill-card">
+					<div class="skill-icon">🚀</div>
+					<h3>{t('skill.devops')}</h3>
+					<div class="skill-tags">
+						{skills.devops.map((s) => <span class="tag">{s}</span>)}
+					</div>
+				</div>
+				<div class="skill-card">
+					<div class="skill-icon">✨</div>
+					<h3>{t('skill.design')}</h3>
+					<div class="skill-tags">
+						{skills.design.map((s) => <span class="tag">{s}</span>)}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section projects-section">
+			<h2 class="section-title">{t('section.projects')}</h2>
+			<p class="section-subtitle">{t('section.projects.subtitle')}</p>
+			<div class="projects-grid">
+				{projects.map((p) => (
+					<div class="project-card">
+						<div class="project-icon">{p.icon}</div>
+						<h3>{p.title[lang]}</h3>
+						<p>{p.desc[lang]}</p>
+						<div class="project-tags">
+							{p.tags.map((tag) => <span class="tag tag-light">{tag}</span>)}
+						</div>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="section blog-section">
+			<h2 class="section-title">{t('section.blog')}</h2>
+			<p class="section-subtitle">{t('section.blog.subtitle')}</p>
+			<div class="blog-grid">
+				{posts.map((post) => (
+					<a href={`${base}/blog/${post.id}/`} class="blog-card">
+						<div class="blog-date">
+							<FormattedDate date={post.data.pubDate} />
+						</div>
+						<h3>{post.data.title}</h3>
+						<p>{post.data.description}</p>
+						<span class="read-more">{t('blog.readMore')} →</span>
+					</a>
+				))}
+			</div>
+			<div class="view-all">
+				<a href={`${base}/blog`} class="btn btn-secondary">{t('blog.backToList')}</a>
+			</div>
+		</section>
+
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.hero {
+		position: relative;
+		padding: 6rem 0 4rem;
+		overflow: hidden;
+	}
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		overflow: hidden;
+	}
+	.blob {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.5;
+	}
+	.blob-1 {
+		width: 500px;
+		height: 500px;
+		background: var(--accent);
+		top: -200px;
+		right: -150px;
+		opacity: 0.2;
+	}
+	.blob-2 {
+		width: 400px;
+		height: 400px;
+		background: var(--secondary);
+		bottom: -150px;
+		left: -100px;
+		opacity: 0.15;
+	}
+	.blob-3 {
+		width: 300px;
+		height: 300px;
+		background: var(--tertiary);
+		top: 50%;
+		left: 50%;
+		opacity: 0.1;
+	}
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: 1.2fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+	.hero-greeting {
+		color: var(--accent);
+		font-weight: 600;
+		font-size: 1.1rem;
+		margin: 0 0 0.5rem;
+	}
+	.hero-name {
+		margin: 0 0 0.5rem;
+		font-size: clamp(2.5rem, 6vw, 4.5rem);
+		line-height: 1.1;
+	}
+	.hero-title {
+		font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+		color: rgb(var(--text-muted));
+		font-weight: 500;
+		margin: 0 0 1.5rem;
+	}
+	.hero-desc {
+		font-size: 1.05rem;
+		line-height: 1.8;
+		margin-bottom: 2rem;
+		max-width: 500px;
+	}
+	.hero-cta {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.hero-visual {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.avatar-ring {
+		width: 280px;
+		height: 280px;
+		border-radius: 50%;
+		background: var(--gradient-primary);
+		padding: 6px;
+		box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+	}
+	.avatar {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background: rgb(var(--bg-elevated));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.avatar-emoji {
+		font-size: 7rem;
+	}
+
+	.about-card {
+		background: rgb(var(--bg-elevated));
+		border-radius: var(--radius-xl);
+		padding: 3rem 2rem;
+		box-shadow: var(--shadow-card);
+		border: 1px solid rgb(var(--border-light));
+		text-align: center;
+	}
+	.about-bullets {
+		list-style: none;
+		padding: 0;
+		margin: 1.5rem 0 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: flex-start;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.about-bullets li {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		font-size: 1.05rem;
+		color: rgb(var(--text-muted));
+		text-align: left;
+	}
+	.check {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		background: rgba(var(--accent-rgb), 0.12);
+		color: var(--accent);
+		font-size: 0.85rem;
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1.5rem;
+	}
+	.skill-card {
+		background: rgb(var(--bg-elevated));
+		border-radius: var(--radius-lg);
+		padding: 2rem 1.5rem;
+		text-align: center;
+		transition: all 0.3s ease;
+		border: 1px solid rgb(var(--border-light));
+	}
+	.skill-card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-xl);
+	}
+	.skill-icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	.skill-card h3 {
+		margin-bottom: 1rem;
+		font-size: 1.1rem;
+	}
+	.skill-tags,
+	.project-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		justify-content: center;
+	}
+	.tag {
+		padding: 0.3rem 0.75rem;
+		border-radius: var(--radius-full);
+		font-size: 0.8rem;
+		font-weight: 500;
+		background: rgba(var(--accent-rgb), 0.08);
+		color: var(--accent);
+	}
+	.tag-light {
+		background: rgb(var(--border-light));
+		color: rgb(var(--text-muted));
+	}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.5rem;
+	}
+	.project-card {
+		background: rgb(var(--bg-elevated));
+		border-radius: var(--radius-lg);
+		padding: 2rem;
+		transition: all 0.3s ease;
+		border: 1px solid rgb(var(--border-light));
+	}
+	.project-card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-xl);
+	}
+	.project-icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	.project-card h3 {
+		margin-bottom: 0.5rem;
+	}
+	.project-card p {
+		font-size: 0.95rem;
+		margin-bottom: 1rem;
+	}
+	.project-tags {
+		justify-content: flex-start;
+	}
+
+	.blog-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+		margin-bottom: 2.5rem;
+	}
+	.blog-card {
+		display: block;
+		background: rgb(var(--bg-elevated));
+		border-radius: var(--radius-lg);
+		padding: 2rem;
+		transition: all 0.3s ease;
+		border: 1px solid rgb(var(--border-light));
+		color: inherit;
+		text-decoration: none;
+	}
+	.blog-card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-xl);
+	}
+	.blog-date {
+		font-size: 0.85rem;
+		color: rgb(var(--text-light));
+		margin-bottom: 0.75rem;
+	}
+	.blog-card h3 {
+		margin-bottom: 0.75rem;
+		font-size: 1.15rem;
+		line-height: 1.4;
+	}
+	.blog-card p {
+		font-size: 0.9rem;
+		margin-bottom: 1rem;
+		color: rgb(var(--text-muted));
+	}
+	.read-more {
+		color: var(--accent);
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+	.view-all {
+		text-align: center;
+	}
+
+	@media (max-width: 860px) {
+		.hero-content {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+		.hero-desc {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.hero-cta {
+			justify-content: center;
+		}
+		.avatar-ring {
+			width: 220px;
+			height: 220px;
+		}
+		.avatar-emoji {
+			font-size: 5rem;
+		}
+	}
+</style>

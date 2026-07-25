@@ -1,141 +1,274 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
-
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--accent: #6366f1;
+	--accent-rgb: 99, 102, 241;
+	--accent-dark: #4f46e5;
+	--accent-light: #a5b4fc;
+	--secondary: #ec4899;
+	--secondary-rgb: 236, 72, 153;
+	--tertiary: #14b8a6;
+
+	--bg: 250, 250, 252;
+	--bg-elevated: 255, 255, 255;
+	--text: 15, 23, 42;
+	--text-muted: 100, 116, 139;
+	--text-light: 148, 163, 184;
+	--border: 226, 232, 240;
+	--border-light: 241, 245, 249;
+
+	--gradient-primary: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+	--gradient-secondary: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+	--gradient-bg: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+
+	--shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+	--shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.06);
+	--shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.08);
+	--shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+	--shadow-card: 0 4px 20px rgba(99, 102, 241, 0.08);
+
+	--radius-sm: 8px;
+	--radius-md: 12px;
+	--radius-lg: 16px;
+	--radius-xl: 24px;
+	--radius-full: 9999px;
+
+	--font-sans: var(--font-atkinson), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+		'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
 }
+
+[data-theme='dark'] {
+	--bg: 15, 23, 42;
+	--bg-elevated: 30, 41, 59;
+	--text: 248, 250, 252;
+	--text-muted: 148, 163, 184;
+	--text-light: 100, 116, 139;
+	--border: 51, 65, 85;
+	--border-light: 30, 41, 59;
+	--gradient-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
 body {
-	font-family: var(--font-atkinson);
+	font-family: var(--font-sans);
 	margin: 0;
 	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
+	background: var(--gradient-bg);
+	color: rgb(var(--text));
+	font-size: 16px;
 	line-height: 1.7;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	min-height: 100vh;
 }
+
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1.5rem;
 }
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
+	margin: 0 0 0.75rem 0;
+	color: rgb(var(--text));
+	line-height: 1.25;
+	font-weight: 700;
+	letter-spacing: -0.02em;
 }
+
 h1 {
-	font-size: 3.052em;
+	font-size: clamp(2rem, 5vw, 3.5rem);
 }
 h2 {
-	font-size: 2.441em;
+	font-size: clamp(1.5rem, 3.5vw, 2.25rem);
 }
 h3 {
-	font-size: 1.953em;
+	font-size: clamp(1.25rem, 2.5vw, 1.5rem);
 }
 h4 {
-	font-size: 1.563em;
+	font-size: 1.125rem;
 }
-h5 {
-	font-size: 1.25em;
+
+p {
+	margin: 0 0 1rem 0;
+	color: rgb(var(--text-muted));
 }
-strong,
-b {
-	font-weight: 700;
-}
+
 a {
 	color: var(--accent);
+	text-decoration: none;
+	transition: color 0.2s ease;
 }
 a:hover {
-	color: var(--accent);
+	color: var(--accent-dark);
 }
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
+
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
+	display: block;
 }
+
 code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
+	padding: 2px 8px;
+	background: rgba(var(--border), 0.5);
+	border-radius: var(--radius-sm);
+	font-size: 0.9em;
 }
+
 pre {
-	padding: 1.5em;
-	border-radius: 8px;
+	padding: 1.25rem;
+	border-radius: var(--radius-md);
+	background: rgb(var(--bg-elevated));
+	overflow-x: auto;
+	box-shadow: var(--shadow-sm);
 }
 pre > code {
 	all: unset;
+	font-size: 0.9em;
 }
+
 blockquote {
 	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
+	padding: 0.5rem 0 0.5rem 1.25rem;
+	margin: 1.5rem 0;
+	font-style: italic;
+	color: rgb(var(--text-muted));
+	background: rgba(var(--accent-rgb), 0.04);
+	border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
+
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+	border-top: 1px solid rgb(var(--border));
+	margin: 3rem 0;
 }
 
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
 	position: absolute !important;
-	height: 1px;
 	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
+	border: 0;
+}
+
+.section {
+	padding: 5rem 0;
+}
+
+.section-title {
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+	text-align: center;
+	color: rgb(var(--text-muted));
+	margin-bottom: 3rem;
+	font-size: 1.05rem;
+}
+
+.gradient-text {
+	background: var(--gradient-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.card {
+	background: rgb(var(--bg-elevated));
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-card);
+	border: 1px solid rgb(var(--border-light));
+	transition: all 0.3s ease;
+}
+.card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-xl);
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1.5rem;
+	border-radius: var(--radius-full);
+	font-weight: 600;
+	font-size: 0.95rem;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	border: none;
+	cursor: pointer;
+}
+.btn-primary {
+	background: var(--gradient-primary);
+	color: white;
+	box-shadow: var(--shadow-md);
+}
+.btn-primary:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-lg);
+	color: white;
+}
+.btn-secondary {
+	background: rgb(var(--bg-elevated));
+	color: rgb(var(--text));
+	border: 1px solid rgb(var(--border));
+}
+.btn-secondary:hover {
+	background: rgba(var(--accent-rgb), 0.05);
+	border-color: rgba(var(--accent-rgb), 0.3);
+}
+
+@media (max-width: 768px) {
+	.section {
+		padding: 3rem 0;
+	}
+	main {
+		padding: 0 1rem;
+	}
+}
+
+@keyframes float {
+	0%, 100% { transform: translateY(0px); }
+	50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.6; }
+}
+
+.animate-float {
+	animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp 0.6s ease-out forwards;
 }

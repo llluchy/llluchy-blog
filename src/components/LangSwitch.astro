@@ -1,0 +1,39 @@
+---
+import { getAlternativeLangPath, getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const altPath = getAlternativeLangPath(lang, Astro.url.pathname);
+const label = lang === 'en' ? '中文' : 'EN';
+---
+
+<a href={altPath} class="lang-switch" title={lang === 'en' ? 'Switch to Chinese' : 'Switch to English'}>
+	<span class="globe">🌐</span>
+	<span class="label">{label}</span>
+</a>
+
+<style>
+	.lang-switch {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 8px 14px;
+		border-radius: 999px;
+		background: rgba(var(--accent-rgb), 0.1);
+		color: rgb(var(--accent-rgb));
+		font-size: 14px;
+		font-weight: 600;
+		text-decoration: none;
+		transition: all 0.2s ease;
+		border: 1px solid rgba(var(--accent-rgb), 0.2);
+	}
+	.lang-switch:hover {
+		background: rgba(var(--accent-rgb), 0.2);
+		transform: translateY(-1px);
+	}
+	.globe {
+		font-size: 16px;
+	}
+	.label {
+		line-height: 1;
+	}
+</style>
