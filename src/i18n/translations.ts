@@ -16,7 +16,7 @@ export const translations = {
 		'hero.name': 'llluchy',
 		'hero.title': 'Full-Stack Developer & Tech Enthusiast',
 		'hero.description':
-			'Building elegant solutions to complex problems. Passionate about clean code, open source, and continuous learning.',
+			'5+ years of full-stack experience. Passionate about exploring new technologies, building tools that improve efficiency, and delivering quality end-to-end solutions.',
 		'hero.cta.projects': 'View My Work',
 		'hero.cta.blog': 'Read My Blog',
 
@@ -62,7 +62,7 @@ export const translations = {
 		'hero.name': 'llluchy',
 		'hero.title': '全栈开发者 & 技术爱好者',
 		'hero.description':
-			'致力于用优雅的方式解决复杂问题。热爱简洁代码、开源社区和持续学习。',
+			'5年以上全栈开发经验。热爱探索新技术、构建效率工具，独立负责从需求到部署的完整交付流程。',
 		'hero.cta.projects': '查看作品',
 		'hero.cta.blog': '阅读博客',
 

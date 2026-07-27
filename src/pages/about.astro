@@ -11,65 +11,67 @@ const base = import.meta.env.BASE_URL;
 
 const aboutContent = {
 	en: {
-		intro: "Hi! I'm a passionate full-stack developer who loves building things that live on the internet. I enjoy turning complex problems into simple, beautiful solutions.",
+		intro: "Hi! I'm llluchy, a full-stack engineer with 5+ years of experience. I specialize in taking projects from requirements understanding all the way to deployment and delivery. I'm passionate about building automation tools, optimizing workflows, and exploring new technologies.",
 		details: [
-			"When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or writing technical articles on my blog.",
-			"I believe in continuous learning and sharing knowledge with the community. Every problem is an opportunity to learn something new.",
-			"Beyond technology, I'm a coffee enthusiast, a casual gamer, and always up for a good conversation about innovation and ideas.",
+			"I believe in truly understanding the essence of work — not just completing tasks, but figuring out why they matter and how to do them better, faster, and with higher quality.",
+			"Beyond the usual tech stack, I enjoy building practical automation tools that save hours of repetitive work for myself and my team. Efficiency is everything.",
+			"When I'm not coding, you'll find me working on my NAS, experimenting with 3D modeling and printing, working out, or hiking outdoors.",
 		],
 	},
 	zh: {
-		intro: '你好！我是一名热爱全栈开发的工程师，喜欢构建有价值的互联网产品。我享受将复杂问题转化为简洁、优雅的解决方案的过程。',
+		intro: '你好！我是 llluchy，一名拥有 5+ 年经验的全栈工程师。擅长独立负责项目从需求理解到上线部署的完整流程。热衷于构建自动化工具、优化工作流程、探索新技术。',
 		details: [
-			'不写代码的时候，我会探索新技术、参与开源项目，或者在博客上写一些技术文章。',
-			'我坚信持续学习和与社区分享知识的重要性。每一个问题都是学习新东西的机会。',
-			'除了技术，我还是一个咖啡爱好者、休闲游戏玩家，随时愿意聊聊创新和有趣的点子。',
+			'我相信深入理解工作的本质——不只是完成任务，而是搞清楚为什么要做，以及怎么才能做得更快、更好、质量更高。',
+			'除了常规技术栈之外，我喜欢构建实用的自动化工具，为自己和团队节省大量重复性工作的时间。效率即一切。',
+			'不写代码的时候，你会发现我在折腾 NAS、研究 3D 建模和打印、健身，或者去户外爬山。',
 		],
 	},
 };
 
 const timeline = {
 	en: [
-		{ year: '2024', title: 'Senior Full-Stack Developer', desc: 'Leading architecture and development of large-scale web applications.' },
-		{ year: '2022', title: 'Full-Stack Developer', desc: 'Built and shipped multiple production applications serving millions of users.' },
-		{ year: '2020', title: 'Frontend Engineer', desc: 'Focused on React ecosystem, performance optimization, and design systems.' },
-		{ year: '2019', title: 'Started Coding Journey', desc: 'Wrote my first lines of code and fell in love with building things.' },
+		{ year: '2025 - Present', title: 'Full-Stack Engineer', desc: 'Independently managing end-to-end project delivery from requirements to deployment across frontend, backend, database, and infrastructure.' },
+		{ year: '2024 - 2025', title: 'Frontend Developer (E-commerce industry)', desc: 'Optimized internal workflows through automation tools. Built enterprise web systems with frontend-backend separation and automated batch data processing.' },
+		{ year: '2020 - 2024', title: 'Java Developer (Outsourcing industry)', desc: 'Led full-cycle Java development from requirements analysis to testing. Built productivity tools with Java and VBA that significantly reduced testing time.' },
 	],
 	zh: [
-		{ year: '2024', title: '高级全栈工程师', desc: '主导大型 Web 应用的架构设计与开发。' },
-		{ year: '2022', title: '全栈开发工程师', desc: '构建并交付了多个服务数百万用户的生产级应用。' },
-		{ year: '2020', title: '前端工程师', desc: '专注于 React 生态、性能优化和设计系统建设。' },
-		{ year: '2019', title: '开启编程之旅', desc: '写下了第一行代码，从此爱上了构建东西的感觉。' },
+		{ year: '2025 - 至今', title: '全栈工程师', desc: '独立负责从需求到部署的完整项目交付，覆盖前端、后端、数据库和基础设施。' },
+		{ year: '2024 - 2025', title: '前端开发工程师（跨境电商行业）', desc: '通过自动化工具优化内部工作流程。构建前后端分离的企业级 Web 系统及自动化批量数据处理方案。' },
+		{ year: '2020 - 2024', title: 'Java 开发工程师（外包行业）', desc: '主导从需求分析到测试的完整 Java 开发周期。使用 Java 和 VBA 构建效率工具，大幅节省测试时间。' },
 	],
 };
 
 const hobbies = {
 	en: [
-		{ icon: '📚', name: 'Reading', desc: 'Tech blogs, sci-fi, and self-improvement books' },
-		{ icon: '🎮', name: 'Gaming', desc: 'Indie games and strategy games' },
-		{ icon: '☕', name: 'Coffee', desc: 'Exploring specialty coffee brewing methods' },
-		{ icon: '🎵', name: 'Music', desc: 'Lo-fi, electronic, and acoustic vibes' },
+		{ icon: '💪', name: 'Fitness', desc: 'Keeping body and mind in shape' },
+		{ icon: '🗄️', name: 'NAS', desc: 'Self-hosting and home server projects' },
+		{ icon: '🎨', name: '3D Modeling', desc: 'Fusion 360 beginner, learning the craft' },
+		{ icon: '🖨️', name: '3D Printing', desc: 'Bringing digital designs to life' },
+		{ icon: '🐙', name: 'Open Source', desc: 'Building and sharing on GitHub' },
+		{ icon: '⛰️', name: 'Hiking', desc: 'Getting outdoors and clearing the mind' },
 	],
 	zh: [
-		{ icon: '📚', name: '阅读', desc: '技术博客、科幻小说和自我提升类书籍' },
-		{ icon: '🎮', name: '游戏', desc: '独立游戏和策略类游戏' },
-		{ icon: '☕', name: '咖啡', desc: '探索精品咖啡的各种冲煮方式' },
-		{ icon: '🎵', name: '音乐', desc: 'Lo-fi、电子和原声音乐' },
+		{ icon: '💪', name: '健身', desc: '保持身体和精神的最佳状态' },
+		{ icon: '🗄️', name: 'NAS', desc: '自建服务和家庭服务器项目' },
+		{ icon: '🎨', name: '3D 建模', desc: 'Fusion 360 入门学习中' },
+		{ icon: '🖨️', name: '3D 打印', desc: '把数字设计变成现实' },
+		{ icon: '🐙', name: '开源', desc: '在 GitHub 上构建和分享作品' },
+		{ icon: '⛰️', name: '爬山', desc: '走进户外，放空大脑' },
 	],
 };
 
 const skills = {
 	en: [
-		{ name: 'Frontend Development', level: 95 },
-		{ name: 'Backend Development', level: 85 },
-		{ name: 'UI/UX Design', level: 75 },
-		{ name: 'DevOps & Cloud', level: 70 },
+		{ name: 'Frontend Development', level: 92 },
+		{ name: 'Backend Development (Java)', level: 88 },
+		{ name: 'Database & DevOps', level: 80 },
+		{ name: 'Efficiency & Automation', level: 90 },
 	],
 	zh: [
-		{ name: '前端开发', level: 95 },
-		{ name: '后端开发', level: 85 },
-		{ name: 'UI/UX 设计', level: 75 },
-		{ name: 'DevOps & 云服务', level: 70 },
+		{ name: '前端开发', level: 92 },
+		{ name: '后端开发（Java）', level: 88 },
+		{ name: '数据库 & 运维部署', level: 80 },
+		{ name: '效率工具 & 自动化', level: 90 },
 	],
 };
 ---
@@ -149,6 +151,24 @@ const skills = {
 						<p>{h.desc}</p>
 					</div>
 				))}
+			</div>
+		</section>
+
+		<section class="section">
+			<h2 class="section-title">
+				{lang === 'en' ? 'Get In Touch' : '联系我'}
+			</h2>
+			<p class="section-subtitle">
+				{lang === 'en' ? 'Open to interesting conversations and opportunities' : '欢迎有趣的交流和合作机会'}
+			</p>
+			<div class="contact-card">
+				<div class="contact-item">
+					<span class="contact-icon">📧</span>
+					<div>
+						<div class="contact-label">{lang === 'en' ? 'Email' : '邮箱'}</div>
+						<a href="mailto:llluchy@outlook.com" class="contact-value">llluchy@outlook.com</a>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -319,5 +339,36 @@ const skills = {
 	.hobby-card p {
 		margin: 0;
 		font-size: 0.85rem;
+	}
+
+	.contact-card {
+		max-width: 500px;
+		margin: 0 auto;
+		background: rgb(var(--bg-elevated));
+		border: 1px solid rgb(var(--border-light));
+		border-radius: var(--radius-xl);
+		padding: 2rem;
+		box-shadow: var(--shadow-card);
+	}
+	.contact-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+	.contact-icon {
+		font-size: 2.5rem;
+	}
+	.contact-label {
+		font-size: 0.85rem;
+		color: rgb(var(--text-muted));
+		margin-bottom: 0.25rem;
+	}
+	.contact-value {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: var(--accent);
+	}
+	.contact-value:hover {
+		text-decoration: underline;
 	}
 </style>
