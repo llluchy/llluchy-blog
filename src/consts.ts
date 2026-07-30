@@ -6,7 +6,7 @@ export const SITE_DESCRIPTION = 'A personal blog built with Astro';
 export const SITE_AUTHOR = 'llluchy';
 
 export const UTTERANCES_CONFIG = {
-	repo: 'llluchy/comments',
+	repo: 'llluchy/llluchy-blog',
 	issueTerm: 'pathname',
 	theme: 'github-light',
 };
