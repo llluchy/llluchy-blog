@@ -201,7 +201,7 @@ const projects = featuredProjects.map(p => p.data);
 							<span class="proj-icon">{p.icon}</span>
 							<span class="proj-index">{String(i + 1).padStart(2, '0')}</span>
 						</div>
-						<h3>{p.title[lang]}</h3>
+						<h3>{p.title}</h3>
 						<p>{p.description[lang]}</p>
 						<div class="proj-tags">
 							{p.tags.map((tag) => <span class="chip chip-light">{tag}</span>)}
@@ -557,11 +557,17 @@ const projects = featuredProjects.map(p => p.data);
 	}
 	.ring-1 .orb-tag-pos {
 		--angle: calc(var(--i) * 90deg);
-		transform: rotate(var(--angle)) translateX(190px);
+		transform: translate(
+			calc(cos(var(--angle)) * 190px),
+			calc(sin(var(--angle)) * 190px)
+		);
 	}
 	.ring-2 .orb-tag-pos {
 		--angle: calc(var(--i) * 90deg + 45deg);
-		transform: rotate(var(--angle)) translateX(150px);
+		transform: translate(
+			calc(cos(var(--angle)) * 150px),
+			calc(sin(var(--angle)) * 150px)
+		);
 	}
 	.orb-tag {
 		display: inline-block;
@@ -574,20 +580,7 @@ const projects = featuredProjects.map(p => p.data);
 		font-weight: 600;
 		color: #a5b4fc;
 		white-space: nowrap;
-	}
-	.ring-1 .orb-tag {
-		animation: counterSpin1 30s linear infinite;
-	}
-	.ring-2 .orb-tag {
-		animation: counterSpin2 22s linear infinite;
-	}
-	@keyframes counterSpin1 {
-		from { transform: rotate(0deg); }
-		to { transform: rotate(-360deg); }
-	}
-	@keyframes counterSpin2 {
-		from { transform: rotate(0deg); }
-		to { transform: rotate(360deg); }
+		transform: translate(-50%, -50%);
 	}
 
 	.orbital-core {
@@ -1026,8 +1019,8 @@ const projects = featuredProjects.map(p => p.data);
 		.hero-cta { justify-content: center; }
 		.hero-meta { justify-content: center; }
 		.orbital-stage { width: 300px; height: 300px; }
-		.ring-1 .orb-tag-pos { transform: rotate(var(--angle)) translateX(150px); }
-		.ring-2 .orb-tag-pos { transform: rotate(var(--angle)) translateX(110px); }
+		.ring-1 .orb-tag-pos { transform: translate(calc(cos(var(--angle)) * 150px), calc(sin(var(--angle)) * 150px)); }
+		.ring-2 .orb-tag-pos { transform: translate(calc(cos(var(--angle)) * 110px), calc(sin(var(--angle)) * 110px)); }
 
 		.about-layout { grid-template-columns: 1fr; gap: 3rem; }
 		.about-card-stack { max-width: 280px; margin: 0 auto; }
@@ -1048,8 +1041,8 @@ const projects = featuredProjects.map(p => p.data);
 		.orbital-stage { width: 260px; height: 260px; }
 		.orbital-core { width: 120px; height: 120px; }
 		.core-emoji { font-size: 3rem; }
-		.ring-1 .orb-tag-pos { transform: rotate(var(--angle)) translateX(130px); }
-		.ring-2 .orb-tag-pos { transform: rotate(var(--angle)) translateX(90px); }
+		.ring-1 .orb-tag-pos { transform: translate(calc(cos(var(--angle)) * 130px), calc(sin(var(--angle)) * 130px)); }
+		.ring-2 .orb-tag-pos { transform: translate(calc(cos(var(--angle)) * 90px), calc(sin(var(--angle)) * 90px)); }
 		.ring-1 .orb-tag,
 		.ring-2 .orb-tag { font-size: 0.7rem; }
 		.skills-bento { grid-template-columns: 1fr; }
