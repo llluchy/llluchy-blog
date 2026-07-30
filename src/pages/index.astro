@@ -46,17 +46,21 @@ const projects = featuredProjects.map(p => p.data);
 						<span>{t('hero.greeting')}</span>
 					</div>
 
-					<div class="hero-title-wrap reveal" data-delay="0.1">
+					<h1 class="hero-name reveal" data-delay="0.1">
+						<span class="name-line gradient-text">llluchy</span>
+					</h1>
+
+					<div class="hero-title-wrap reveal" data-delay="0.2">
 						<span class="title-bracket">&lt;</span>
 						<h2 class="hero-title">{t('hero.title')}</h2>
 						<span class="title-bracket">/&gt;</span>
 					</div>
 
-					<p class="hero-desc reveal" data-delay="0.2">
+					<p class="hero-desc reveal" data-delay="0.3">
 						{t('hero.description')}
 					</p>
 
-					<div class="hero-cta reveal" data-delay="0.3">
+					<div class="hero-cta reveal" data-delay="0.4">
 						<a href={`${base}/about`} class="btn-magnetic" data-magnetic>
 							<span class="btn-label">{t('hero.cta.projects')}</span>
 							<span class="btn-arrow">→</span>
@@ -66,7 +70,7 @@ const projects = featuredProjects.map(p => p.data);
 						</a>
 					</div>
 
-					<div class="hero-meta reveal" data-delay="0.4">
+					<div class="hero-meta reveal" data-delay="0.5">
 						<div class="meta-item">
 							<span class="meta-num">5+</span>
 							<span class="meta-label">{lang === 'zh' ? '年经验' : 'Years Exp'}</span>
@@ -88,12 +92,16 @@ const projects = featuredProjects.map(p => p.data);
 					<div class="orbital-stage">
 						<div class="orbital-ring ring-1">
 							{orbitalTags.slice(0, 4).map((tag, i) => (
-								<span class="orb-tag" style={`--i:${i}`}>{tag}</span>
+								<span class="orb-tag-pos" style={`--i:${i}`}>
+									<span class="orb-tag">{tag}</span>
+								</span>
 							))}
 						</div>
 						<div class="orbital-ring ring-2">
 							{orbitalTags.slice(4, 8).map((tag, i) => (
-								<span class="orb-tag" style={`--i:${i}`}>{tag}</span>
+								<span class="orb-tag-pos" style={`--i:${i}`}>
+									<span class="orb-tag">{tag}</span>
+								</span>
 							))}
 						</div>
 						<div class="orbital-core" data-parallax>
@@ -393,6 +401,24 @@ const projects = featuredProjects.map(p => p.data);
 		50% { opacity: 0.6; transform: scale(1.2); }
 	}
 
+	.hero-name {
+		font-size: clamp(3.5rem, 10vw, 8rem);
+		line-height: 0.9;
+		margin: 0 0 1rem;
+		font-weight: 900;
+		letter-spacing: -0.04em;
+		white-space: nowrap;
+	}
+	.name-line {
+		color: #fff;
+	}
+	.name-line.gradient-text {
+		background: linear-gradient(135deg, #818cf8 0%, #f472b6 50%, #22d3ee 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
 	.hero-title-wrap {
 		display: inline-flex;
 		align-items: center;
@@ -513,15 +539,32 @@ const projects = featuredProjects.map(p => p.data);
 		border: 1px dashed rgba(99, 102, 241, 0.3);
 	}
 	.ring-1 {
+		animation: spin 30s linear infinite;
 	}
 	.ring-2 {
 		inset: 40px;
 		border-color: rgba(236, 72, 153, 0.3);
+		animation: spin 22s linear infinite reverse;
 	}
-	.orb-tag {
+	@keyframes spin {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(360deg); }
+	}
+	.orb-tag-pos {
 		position: absolute;
 		top: 50%;
 		left: 50%;
+	}
+	.ring-1 .orb-tag-pos {
+		--angle: calc(var(--i) * 90deg);
+		transform: rotate(var(--angle)) translateX(190px);
+	}
+	.ring-2 .orb-tag-pos {
+		--angle: calc(var(--i) * 90deg + 45deg);
+		transform: rotate(var(--angle)) translateX(150px);
+	}
+	.orb-tag {
+		display: inline-block;
 		padding: 0.35rem 0.8rem;
 		background: rgba(15, 23, 42, 0.8);
 		backdrop-filter: blur(10px);
@@ -533,12 +576,18 @@ const projects = featuredProjects.map(p => p.data);
 		white-space: nowrap;
 	}
 	.ring-1 .orb-tag {
-		--angle: calc(var(--i) * 90deg);
-		transform: rotate(var(--angle)) translateX(190px) rotate(calc(-1 * var(--angle)));
+		animation: counterSpin1 30s linear infinite;
 	}
 	.ring-2 .orb-tag {
-		--angle: calc(var(--i) * 90deg + 45deg);
-		transform: rotate(var(--angle)) translateX(150px) rotate(calc(-1 * var(--angle)));
+		animation: counterSpin2 22s linear infinite;
+	}
+	@keyframes counterSpin1 {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(-360deg); }
+	}
+	@keyframes counterSpin2 {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(360deg); }
 	}
 
 	.orbital-core {
@@ -977,8 +1026,8 @@ const projects = featuredProjects.map(p => p.data);
 		.hero-cta { justify-content: center; }
 		.hero-meta { justify-content: center; }
 		.orbital-stage { width: 300px; height: 300px; }
-		.ring-1 .orb-tag { transform: rotate(var(--angle)) translateX(150px) rotate(calc(-1 * var(--angle))); }
-		.ring-2 .orb-tag { transform: rotate(var(--angle)) translateX(110px) rotate(calc(-1 * var(--angle))); }
+		.ring-1 .orb-tag-pos { transform: rotate(var(--angle)) translateX(150px); }
+		.ring-2 .orb-tag-pos { transform: rotate(var(--angle)) translateX(110px); }
 
 		.about-layout { grid-template-columns: 1fr; gap: 3rem; }
 		.about-card-stack { max-width: 280px; margin: 0 auto; }
@@ -999,8 +1048,10 @@ const projects = featuredProjects.map(p => p.data);
 		.orbital-stage { width: 260px; height: 260px; }
 		.orbital-core { width: 120px; height: 120px; }
 		.core-emoji { font-size: 3rem; }
-		.ring-1 .orb-tag { transform: rotate(var(--angle)) translateX(130px) rotate(calc(-1 * var(--angle))); font-size: 0.7rem; }
-		.ring-2 .orb-tag { transform: rotate(var(--angle)) translateX(90px) rotate(calc(-1 * var(--angle))); font-size: 0.7rem; }
+		.ring-1 .orb-tag-pos { transform: rotate(var(--angle)) translateX(130px); }
+		.ring-2 .orb-tag-pos { transform: rotate(var(--angle)) translateX(90px); }
+		.ring-1 .orb-tag,
+		.ring-2 .orb-tag { font-size: 0.7rem; }
 		.skills-bento { grid-template-columns: 1fr; }
 		.bento-xl, .bento-lg, .bento-md, .bento-sm { grid-column: span 1; }
 		.blog-featured { padding: 2rem; }
