@@ -46,22 +46,17 @@ const projects = featuredProjects.map(p => p.data);
 						<span>{t('hero.greeting')}</span>
 					</div>
 
-					<h1 class="hero-name reveal" data-delay="0.1">
-						<span class="name-line">lll</span>
-						<span class="name-line gradient-text">uchy</span>
-					</h1>
-
-					<div class="hero-title-wrap reveal" data-delay="0.2">
+					<div class="hero-title-wrap reveal" data-delay="0.1">
 						<span class="title-bracket">&lt;</span>
 						<h2 class="hero-title">{t('hero.title')}</h2>
 						<span class="title-bracket">/&gt;</span>
 					</div>
 
-					<p class="hero-desc reveal" data-delay="0.3">
+					<p class="hero-desc reveal" data-delay="0.2">
 						{t('hero.description')}
 					</p>
 
-					<div class="hero-cta reveal" data-delay="0.4">
+					<div class="hero-cta reveal" data-delay="0.3">
 						<a href={`${base}/about`} class="btn-magnetic" data-magnetic>
 							<span class="btn-label">{t('hero.cta.projects')}</span>
 							<span class="btn-arrow">→</span>
@@ -71,7 +66,7 @@ const projects = featuredProjects.map(p => p.data);
 						</a>
 					</div>
 
-					<div class="hero-meta reveal" data-delay="0.5">
+					<div class="hero-meta reveal" data-delay="0.4">
 						<div class="meta-item">
 							<span class="meta-num">5+</span>
 							<span class="meta-label">{lang === 'zh' ? '年经验' : 'Years Exp'}</span>
@@ -398,24 +393,6 @@ const projects = featuredProjects.map(p => p.data);
 		50% { opacity: 0.6; transform: scale(1.2); }
 	}
 
-	.hero-name {
-		font-size: clamp(3.5rem, 10vw, 8rem);
-		line-height: 0.9;
-		margin: 0 0 1rem;
-		font-weight: 900;
-		letter-spacing: -0.04em;
-	}
-	.name-line {
-		display: block;
-		color: #fff;
-	}
-	.name-line.gradient-text {
-		background: linear-gradient(135deg, #818cf8 0%, #f472b6 50%, #22d3ee 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-
 	.hero-title-wrap {
 		display: inline-flex;
 		align-items: center;
@@ -536,16 +513,10 @@ const projects = featuredProjects.map(p => p.data);
 		border: 1px dashed rgba(99, 102, 241, 0.3);
 	}
 	.ring-1 {
-		animation: spin 30s linear infinite;
 	}
 	.ring-2 {
 		inset: 40px;
 		border-color: rgba(236, 72, 153, 0.3);
-		animation: spin 22s linear infinite reverse;
-	}
-	@keyframes spin {
-		from { transform: rotate(0deg); }
-		to { transform: rotate(360deg); }
 	}
 	.orb-tag {
 		position: absolute;
@@ -854,7 +825,7 @@ const projects = featuredProjects.map(p => p.data);
 	.projects-stack {
 		display: flex;
 		flex-direction: column;
-		gap: 0;
+		gap: 2rem;
 		position: relative;
 	}
 	.project-stack-card {
@@ -864,9 +835,7 @@ const projects = featuredProjects.map(p => p.data);
 		padding: 2.5rem;
 		position: relative;
 		transition: all 0.4s ease;
-		margin-top: calc(var(--offset, 0px) * -1);
 	}
-	.project-stack-card:first-child { margin-top: 0; }
 	.project-stack-card:hover {
 		transform: translateX(12px);
 		box-shadow: var(--shadow-xl);
@@ -1024,7 +993,6 @@ const projects = featuredProjects.map(p => p.data);
 	@media (max-width: 640px) {
 		.hero { padding: 6rem 0 4rem; }
 		.hero-content { padding: 0 1.25rem; }
-		.hero-name { font-size: clamp(3rem, 14vw, 4.5rem); }
 		.section { padding: 4rem 1.25rem; }
 		.section-header { gap: 1rem; margin-bottom: 2.5rem; }
 		.section-num { font-size: 2.5rem; }
