@@ -23,8 +23,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<body>
 		<Header />
 		<main class="post-main">
+			<a href={`${base}/blog`} class="back-link">← {t('blog.backToList')}</a>
 			<article class="post-article">
-				<a href={`${base}/blog`} class="back-link">← {t('blog.backToList')}</a>
 				{heroImage && (
 					<div class="post-hero">
 						<Image width={1020} height={510} src={heroImage} alt="" />
