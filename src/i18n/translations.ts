@@ -31,21 +31,26 @@ export const translations = {
 		'section.timeline': 'My Journey',
 		'section.timeline.subtitle': 'Key milestones',
 
-		'skill.frontend': 'Frontend',
-		'skill.backend': 'Backend',
-		'skill.devops': 'DevOps & Tools',
-		'skill.design': 'Design & Others',
-
 		'blog.readMore': 'Read More',
 		'blog.backToList': '← Back to all posts',
 		'blog.publishedOn': 'Published on',
 		'blog.updatedOn': 'Updated on',
 		'blog.noPosts': 'No posts yet, check back soon!',
+		'blog.allCategories': 'All',
+		'blog.category.tech': 'Tech',
+		'blog.category.life': 'Life',
+		'blog.category.guide': 'Guide',
+		'blog.category.general': 'General',
 
-		'about.intro': "Hello! I'm a developer who loves turning ideas into reality through code.",
-		'about.passion':
-			'Beyond coding, I enjoy exploring new technologies, contributing to open source, and sharing knowledge through writing.',
-		'about.hobbies': "When I'm not coding, you'll find me reading tech blogs, experimenting with new frameworks, or enjoying a good cup of coffee.",
+		'about.hobbies': 'Hobbies & Interests',
+		'about.hobbies.subtitle': 'Things I enjoy beyond coding',
+		'about.contact': 'Get In Touch',
+		'about.contact.subtitle': 'Open to interesting conversations and opportunities',
+		'about.email': 'Email',
+
+		'projects.title': 'Projects',
+		'projects.subtitle': 'Things I have built',
+		'projects.viewOnGithub': 'View on GitHub',
 
 		'footer.rights': 'All rights reserved.',
 		'footer.builtWith': 'Built with Astro',
@@ -77,21 +82,26 @@ export const translations = {
 		'section.timeline': '成长历程',
 		'section.timeline.subtitle': '重要里程碑',
 
-		'skill.frontend': '前端开发',
-		'skill.backend': '后端开发',
-		'skill.devops': 'DevOps & 工具',
-		'skill.design': '设计 & 其他',
-
 		'blog.readMore': '阅读全文',
 		'blog.backToList': '← 返回文章列表',
 		'blog.publishedOn': '发布于',
 		'blog.updatedOn': '更新于',
 		'blog.noPosts': '暂无文章，敬请期待！',
+		'blog.allCategories': '全部',
+		'blog.category.tech': '技术',
+		'blog.category.life': '生活',
+		'blog.category.guide': '指南',
+		'blog.category.general': '综合',
 
-		'about.intro': '你好！我是一名热爱用代码将想法变为现实的开发者。',
-		'about.passion':
-			'除了编程，我还喜欢探索新技术、参与开源项目，并通过写作分享知识。',
-		'about.hobbies': '不写代码的时候，你可以在技术博客、新框架实验室或者咖啡馆找到我。',
+		'about.hobbies': '爱好 & 兴趣',
+		'about.hobbies.subtitle': '编程之外我喜欢做的事',
+		'about.contact': '联系我',
+		'about.contact.subtitle': '欢迎有趣的交流和合作机会',
+		'about.email': '邮箱',
+
+		'projects.title': '作品',
+		'projects.subtitle': '我构建的一些作品',
+		'projects.viewOnGithub': '在 GitHub 上查看',
 
 		'footer.rights': '保留所有权利。',
 		'footer.builtWith': '使用 Astro 构建',

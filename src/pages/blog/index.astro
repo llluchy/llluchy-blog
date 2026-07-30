@@ -12,9 +12,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const base = import.meta.env.BASE_URL;
 
-const posts = (await getCollection('blog')).sort(
+const allPosts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const categories = [...new Set(allPosts.map(p => p.data.category || 'general'))];
 ---
 
 <!doctype html>
@@ -29,32 +30,57 @@ const posts = (await getCollection('blog')).sort(
 				<h1 class="section-title gradient-text">{t('nav.blog')}</h1>
 				<p class="section-subtitle">{t('section.blog.subtitle')}</p>
 
-				{posts.length === 0 ? (
+				{allPosts.length === 0 ? (
 					<p class="no-posts">{t('blog.noPosts')}</p>
 				) : (
-					<div class="blog-grid">
-						{posts.map((post) => (
-							<a href={`${base}/blog/${post.id}/`} class="blog-card">
-								{post.data.heroImage && (
-									<div class="blog-card-image">
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+					<>
+						<div class="category-filters">
+							<button class="cat-btn active" data-category="all">{t('blog.allCategories')}</button>
+							{categories.map(cat => (
+								<button class="cat-btn" data-category={cat}>{t(`blog.category.${cat}`)}</button>
+							))}
+						</div>
+						<div class="blog-grid">
+							{allPosts.map((post) => (
+								<a href={`${base}/blog/${post.id}/`} class="blog-card" data-category={post.data.category || 'general'}>
+									{post.data.heroImage && (
+										<div class="blog-card-image">
+											<Image width={720} height={360} src={post.data.heroImage} alt="" />
+										</div>
+									)}
+									<div class="blog-card-content">
+										<span class="blog-category">{t(`blog.category.${post.data.category || 'general'}`)}</span>
+										<div class="blog-date">
+											<FormattedDate date={post.data.pubDate} />
+										</div>
+										<h3>{post.data.title}</h3>
+										<p>{post.data.description}</p>
+										<span class="read-more">{t('blog.readMore')} →</span>
 									</div>
-								)}
-								<div class="blog-card-content">
-									<div class="blog-date">
-										<FormattedDate date={post.data.pubDate} />
-									</div>
-									<h3>{post.data.title}</h3>
-									<p>{post.data.description}</p>
-									<span class="read-more">{t('blog.readMore')} →</span>
-								</div>
-							</a>
-						))}
-					</div>
+								</a>
+							))}
+						</div>
+					</>
 				)}
 			</section>
 		</main>
 		<Footer />
+		<script>
+			document.querySelectorAll('.cat-btn').forEach(btn => {
+				btn.addEventListener('click', () => {
+					document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+					const cat = btn.dataset.category;
+					document.querySelectorAll('.blog-card').forEach(card => {
+						if (cat === 'all' || card.dataset.category === cat) {
+							card.style.display = '';
+						} else {
+							card.style.display = 'none';
+						}
+					});
+				});
+			});
+		</script>
 	</body>
 </html>
 
@@ -67,6 +93,43 @@ const posts = (await getCollection('blog')).sort(
 		color: rgb(var(--text-muted));
 		font-size: 1.1rem;
 		padding: 3rem 0;
+	}
+	.category-filters {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		margin-bottom: 2rem;
+	}
+	.cat-btn {
+		padding: 0.5rem 1.2rem;
+		border: 1px solid rgb(var(--border-light));
+		border-radius: var(--radius-full);
+		background: transparent;
+		color: rgb(var(--text-muted));
+		font-size: 0.85rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+	.cat-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+	.cat-btn.active {
+		background: var(--accent);
+		color: #fff;
+		border-color: var(--accent);
+	}
+	.blog-category {
+		display: inline-block;
+		padding: 0.2rem 0.6rem;
+		border-radius: var(--radius-full);
+		font-size: 0.7rem;
+		font-weight: 500;
+		background: rgba(var(--accent-rgb), 0.1);
+		color: var(--accent);
+		margin-bottom: 0.5rem;
+		width: fit-content;
 	}
 	.blog-grid {
 		display: grid;

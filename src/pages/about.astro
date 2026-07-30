@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
@@ -9,77 +10,21 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const base = import.meta.env.BASE_URL;
 
-const aboutContent = {
-	en: {
-		intro: "Hi! I'm llluchy, a full-stack engineer with 5+ years of experience. I specialize in taking projects from requirements understanding all the way to deployment and delivery. I'm passionate about building automation tools, optimizing workflows, and exploring new technologies.",
-		details: [
-			"I believe in truly understanding the essence of work — not just completing tasks, but figuring out why they matter and how to do them better, faster, and with higher quality.",
-			"Beyond the usual tech stack, I enjoy building practical automation tools that save hours of repetitive work for myself and my team. Efficiency is everything.",
-			"When I'm not coding, you'll find me working on my NAS, experimenting with 3D modeling and printing, working out, or hiking outdoors.",
-		],
-	},
-	zh: {
-		intro: '你好！我是 llluchy，一名拥有 5+ 年经验的全栈工程师。擅长独立负责项目从需求理解到上线部署的完整流程。热衷于构建自动化工具、优化工作流程、探索新技术。',
-		details: [
-			'我相信深入理解工作的本质——不只是完成任务，而是搞清楚为什么要做，以及怎么才能做得更快、更好、质量更高。',
-			'除了常规技术栈之外，我喜欢构建实用的自动化工具，为自己和团队节省大量重复性工作的时间。效率即一切。',
-			'不写代码的时候，你会发现我在折腾 NAS、研究 3D 建模和打印、健身，或者去户外爬山。',
-		],
-	},
-};
+const aboutData = (await getCollection('about'))[0]?.data;
+const skillsData = (await getCollection('skills'))[0]?.data;
+const timelineEntries = (await getCollection('timeline')).sort((a, b) => a.data.order - b.data.order);
+const hobbyEntries = (await getCollection('hobbies')).sort((a, b) => a.data.order - b.data.order);
 
-const timeline = {
-	en: [
-		{ year: '2025 - Present', title: 'Full-Stack Engineer', desc: 'Independently managing end-to-end project delivery from requirements to deployment across frontend, backend, database, and infrastructure.' },
-		{ year: '2024 - 2025', title: 'Frontend Developer (E-commerce industry)', desc: 'Optimized internal workflows through automation tools. Built enterprise web systems with frontend-backend separation and automated batch data processing.' },
-		{ year: '2020 - 2024', title: 'Java Developer (Outsourcing industry)', desc: 'Led full-cycle Java development from requirements analysis to testing. Built productivity tools with Java and VBA that significantly reduced testing time.' },
-	],
-	zh: [
-		{ year: '2025 - 至今', title: '全栈工程师', desc: '独立负责从需求到部署的完整项目交付，覆盖前端、后端、数据库和基础设施。' },
-		{ year: '2024 - 2025', title: '前端开发工程师（跨境电商行业）', desc: '通过自动化工具优化内部工作流程。构建前后端分离的企业级 Web 系统及自动化批量数据处理方案。' },
-		{ year: '2020 - 2024', title: 'Java 开发工程师（外包行业）', desc: '主导从需求分析到测试的完整 Java 开发周期。使用 Java 和 VBA 构建效率工具，大幅节省测试时间。' },
-	],
-};
-
-const hobbies = {
-	en: [
-		{ icon: '💪', name: 'Fitness', desc: 'Keeping body and mind in shape' },
-		{ icon: '🗄️', name: 'NAS', desc: 'Self-hosting and home server projects' },
-		{ icon: '🎨', name: '3D Modeling', desc: 'Fusion 360 beginner, learning the craft' },
-		{ icon: '🖨️', name: '3D Printing', desc: 'Bringing digital designs to life' },
-		{ icon: '🐙', name: 'Open Source', desc: 'Building and sharing on GitHub' },
-		{ icon: '⛰️', name: 'Hiking', desc: 'Getting outdoors and clearing the mind' },
-	],
-	zh: [
-		{ icon: '💪', name: '健身', desc: '保持身体和精神的最佳状态' },
-		{ icon: '🗄️', name: 'NAS', desc: '自建服务和家庭服务器项目' },
-		{ icon: '🎨', name: '3D 建模', desc: 'Fusion 360 入门学习中' },
-		{ icon: '🖨️', name: '3D 打印', desc: '把数字设计变成现实' },
-		{ icon: '🐙', name: '开源', desc: '在 GitHub 上构建和分享作品' },
-		{ icon: '⛰️', name: '爬山', desc: '走进户外，放空大脑' },
-	],
-};
-
-const skills = {
-	en: [
-		{ name: 'Frontend Development', level: 92 },
-		{ name: 'Backend Development (Java)', level: 88 },
-		{ name: 'Database & DevOps', level: 80 },
-		{ name: 'Efficiency & Automation', level: 90 },
-	],
-	zh: [
-		{ name: '前端开发', level: 92 },
-		{ name: '后端开发（Java）', level: 88 },
-		{ name: '数据库 & 运维部署', level: 80 },
-		{ name: '效率工具 & 自动化', level: 90 },
-	],
-};
+const aboutContent = aboutData ? { intro: aboutData.intro, details: aboutData.details, contactEmail: aboutData.contactEmail } : { intro: { en: '', zh: '' }, details: { en: [], zh: [] }, contactEmail: '' };
+const timeline = timelineEntries.map(e => e.data);
+const hobbies = hobbyEntries.map(e => e.data);
+const aboutSkills = skillsData?.aboutSkills || [];
 ---
 
 <!doctype html>
 <html lang={lang}>
 	<head>
-		<BaseHead title={`${t('nav.about')} | ${SITE_TITLE}`} description={aboutContent[lang].intro} />
+		<BaseHead title={`${t('nav.about')} | ${SITE_TITLE}`} description={aboutContent.intro[lang]} />
 	</head>
 	<body>
 		<Header />
@@ -91,13 +36,13 @@ const skills = {
 					<span class="avatar-emoji">👨‍💻</span>
 				</div>
 				<h1 class="gradient-text">{t('section.about')}</h1>
-				<p class="about-intro">{aboutContent[lang].intro}</p>
+				<p class="about-intro">{aboutContent.intro[lang]}</p>
 			</div>
 		</section>
 
 		<section class="section">
 			<div class="about-details">
-				{aboutContent[lang].details.map((p) => <p>{p}</p>)}
+				{aboutContent.details[lang].map((p) => <p>{p}</p>)}
 			</div>
 		</section>
 
@@ -105,10 +50,10 @@ const skills = {
 			<h2 class="section-title">{t('section.skills')}</h2>
 			<p class="section-subtitle">{t('section.skills.subtitle')}</p>
 			<div class="skills-bars">
-				{skills[lang].map((s) => (
+				{aboutSkills.map((s) => (
 					<div class="skill-bar">
 						<div class="skill-bar-header">
-							<span class="skill-bar-name">{s.name}</span>
+							<span class="skill-bar-name">{s.name[lang]}</span>
 							<span class="skill-bar-level">{s.level}%</span>
 						</div>
 						<div class="skill-bar-track">
@@ -123,13 +68,13 @@ const skills = {
 			<h2 class="section-title">{t('section.timeline')}</h2>
 			<p class="section-subtitle">{t('section.timeline.subtitle')}</p>
 			<div class="timeline">
-				{timeline[lang].map((item) => (
+				{timeline.map((item) => (
 					<div class="timeline-item">
 						<div class="timeline-dot"></div>
 						<div class="timeline-content">
 							<span class="timeline-year">{item.year}</span>
-							<h3>{item.title}</h3>
-							<p>{item.desc}</p>
+							<h3>{item.title[lang]}</h3>
+							<p>{item.description[lang]}</p>
 						</div>
 					</div>
 				))}
@@ -137,36 +82,28 @@ const skills = {
 		</section>
 
 		<section class="section">
-			<h2 class="section-title">
-				{lang === 'en' ? 'Hobbies & Interests' : '爱好 & 兴趣'}
-			</h2>
-			<p class="section-subtitle">
-				{lang === 'en' ? 'Things I enjoy beyond coding' : '编程之外我喜欢做的事'}
-			</p>
+			<h2 class="section-title">{t('about.hobbies')}</h2>
+			<p class="section-subtitle">{t('about.hobbies.subtitle')}</p>
 			<div class="hobbies-grid">
-				{hobbies[lang].map((h) => (
+				{hobbies.map((h) => (
 					<div class="hobby-card">
 						<div class="hobby-icon">{h.icon}</div>
-						<h3>{h.name}</h3>
-						<p>{h.desc}</p>
+						<h3>{h.name[lang]}</h3>
+						<p>{h.description[lang]}</p>
 					</div>
 				))}
 			</div>
 		</section>
 
 		<section class="section">
-			<h2 class="section-title">
-				{lang === 'en' ? 'Get In Touch' : '联系我'}
-			</h2>
-			<p class="section-subtitle">
-				{lang === 'en' ? 'Open to interesting conversations and opportunities' : '欢迎有趣的交流和合作机会'}
-			</p>
+			<h2 class="section-title">{t('about.contact')}</h2>
+			<p class="section-subtitle">{t('about.contact.subtitle')}</p>
 			<div class="contact-card">
 				<div class="contact-item">
 					<span class="contact-icon">📧</span>
 					<div>
-						<div class="contact-label">{lang === 'en' ? 'Email' : '邮箱'}</div>
-						<a href="mailto:llluchy@outlook.com" class="contact-value">llluchy@outlook.com</a>
+						<div class="contact-label">{t('about.email')}</div>
+						<a href={`mailto:${aboutContent.contactEmail}`} class="contact-value">{aboutContent.contactEmail}</a>
 					</div>
 				</div>
 			</div>
