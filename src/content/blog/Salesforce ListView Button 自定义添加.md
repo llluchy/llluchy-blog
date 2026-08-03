@@ -107,6 +107,7 @@ public class TestApexClass {
 ![配置按钮关联的 Visualforce Page](../../assets/blog-images/salesforce-listview-button/image-7.png)
 ![完成按钮创建](../../assets/blog-images/salesforce-listview-button/image-8.png)
 ![将按钮添加到 List View Button Layout](../../assets/blog-images/salesforce-listview-button/image-9.png)
+![配置按钮关联的 Visualforce Page](../../assets/blog-images/salesforce-listview-button/image-7.png)
 ![按钮在 List View 右上角显示](../../assets/blog-images/salesforce-listview-button/image-10.png)
 
 ### 第四步：测试验证

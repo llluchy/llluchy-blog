@@ -107,6 +107,7 @@ In `Object Manager`, find the target object, go to `Buttons, Links, and Actions`
 ![Link the button to the Visualforce Page](../../assets/blog-images/salesforce-listview-button/image-7.png)
 ![Button created successfully](../../assets/blog-images/salesforce-listview-button/image-8.png)
 ![Add the button to List View Button Layout](../../assets/blog-images/salesforce-listview-button/image-9.png)
+![Link the button to the Visualforce Page](../../assets/blog-images/salesforce-listview-button/image-7.png)
 ![Button appears in the ListView toolbar](../../assets/blog-images/salesforce-listview-button/image-10.png)
 
 ### Step 4: Test and Verify
