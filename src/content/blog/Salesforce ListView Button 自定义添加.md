@@ -20,16 +20,16 @@ category: 'tech'
 
 - 注意事项1：`ListView` 页面自定义按钮添加的入口在 `Object Manager` 的 `List View Button Layout` 中。
 
-![List View Button Layout](../../assets/blog-images/image-2.png)
+![List View Button Layout](../../assets/blog-images/salesforce-listview-button/image-2.png)
 
 - 注意事项2：但是这个入口不是常态显示的，需要在 `Detail` 的 `Edit` 中开启 `Allow Search`，这样才会显示 `List View Button Layout` 入口。
 
-![Detail-Edit](../../assets/blog-images/image-3.png)
-![Allow Search](../../assets/blog-images/image-1.png)
+![Detail-Edit](../../assets/blog-images/salesforce-listview-button/image-3.png)
+![Allow Search](../../assets/blog-images/salesforce-listview-button/image-1.png)
 
 - 注意事项3：但是打开这个选项后，会影响对象在官方的 Search 功能中的可见性，因此，如果目标对象在业务上是不能被检索到，或者不能公开给所有用户查看。那么这个开关在开启后，要注意关闭。
 
-![Search Tools Bar](../../assets/blog-images/image-4.png)
+![Search Tools Bar](../../assets/blog-images/salesforce-listview-button/image-4.png)
 
 #### 需求2：自定义按钮如何才能做到传递数据
 
@@ -111,16 +111,16 @@ testVisualforce.page
 
 #### 创建自定义按钮
 
-![创建自定义按钮](../../assets/blog-images/image-5.png)
-![创建自定义按钮](../../assets/blog-images/image-6.png)
-![创建自定义按钮](../../assets/blog-images/image-7.png)
-![创建自定义按钮](../../assets/blog-images/image-8.png)
-![创建自定义按钮](../../assets/blog-images/image-9.png)
-![创建自定义按钮](../../assets/blog-images/image-7.png)
-![创建自定义按钮](../../assets/blog-images/image-10.png)
+![创建自定义按钮](../../assets/blog-images/salesforce-listview-button/image-5.png)
+![创建自定义按钮](../../assets/blog-images/salesforce-listview-button/image-6.png)
+![创建自定义按钮](../../assets/blog-images/salesforce-listview-button/image-7.png)
+![创建自定义按钮](../../assets/blog-images/salesforce-listview-button/image-8.png)
+![创建自定义按钮](../../assets/blog-images/salesforce-listview-button/image-9.png)
+![创建自定义按钮](../../assets/blog-images/salesforce-listview-button/image-7.png)
+![创建自定义按钮](../../assets/blog-images/salesforce-listview-button/image-10.png)
 
 #### 测试自定义按钮
 
-![测试自定义按钮](../../assets/blog-images/image-11.png)
-![测试自定义按钮](../../assets/blog-images/image-12.png)
-![测试自定义按钮](../../assets/blog-images/image-13.png)
+![测试自定义按钮](../../assets/blog-images/salesforce-listview-button/image-11.png)
+![测试自定义按钮](../../assets/blog-images/salesforce-listview-button/image-12.png)
+![测试自定义按钮](../../assets/blog-images/salesforce-listview-button/image-13.png)

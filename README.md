@@ -80,7 +80,24 @@ https://你的用户名.github.io/你的仓库名
 | 结尾 `---` | **不可删除**，frontmatter 结束标记 |
 | `---` 之后 | 文章正文，标准 Markdown |
 
-### 2.4 提交
+### 2.4 文章配图
+
+图片按文章分文件夹管理，路径格式：`src/assets/blog-images/文章文件名（不含.md）/`
+
+例如文章 `my-first-post.md` 的图片放在：
+
+```
+src/assets/blog-images/my-first-post/image-1.png
+src/assets/blog-images/my-first-post/image-2.png
+```
+
+在 MD 中引用：
+
+```md
+![图片描述](../../assets/blog-images/my-first-post/image-1.png)
+```
+
+### 2.5 提交
 
 填写 commit message，点击 **Commit changes**。等 Actions 跑完，文章就上线了。
 
