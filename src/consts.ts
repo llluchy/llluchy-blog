@@ -8,7 +8,7 @@ export const SITE_AUTHOR = 'llluchy';
 // Google Analytics 4 Measurement ID
 // 前往 https://analytics.google.com 创建账号 → 获取衡量 ID（格式：G-XXXXXXXXXX）
 // 填入下方引号内即可生效，留空则不加载 GA
-export const GA_MEASUREMENT_ID = '';
+export const GA_MEASUREMENT_ID = 'G-91GPGC26ZV';
 
 export const UTTERANCES_CONFIG = {
 	repo: 'llluchy/llluchy-blog',
