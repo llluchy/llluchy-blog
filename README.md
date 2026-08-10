@@ -5,10 +5,11 @@
 ## 目录
 
 - [1. 一分钟拥有自己的博客](#1-一分钟拥有自己的博客)
-- [2. 写一篇博客文章](#2-写一篇博客文章)
-- [3. 添加作品卡片](#3-添加作品卡片)
-- [4. 修改个人信息](#4-修改个人信息)
-- [5. 启用评论功能](#5-启用评论功能)
+- [2. 绑定自定义域名（可选）](#2-绑定自定义域名可选)
+- [3. 写一篇博客文章](#3-写一篇博客文章)
+- [4. 添加作品卡片](#4-添加作品卡片)
+- [5. 修改个人信息](#5-修改个人信息)
+- [6. 启用评论功能](#6-启用评论功能)
 
 ---
 
@@ -22,23 +23,28 @@
 
 在 GitHub 网页上，直接编辑以下文件（点击文件 → 右上角铅笔图标 ✏️）：
 
-**① `astro.config.mjs`** — 把 `site` 和 `base` 改成你的：
-
-```js
-export default defineConfig({
-  site: 'https://你的用户名.github.io',
-  base: '/你的仓库名',           // 如果没改仓库名就是 /llluchy-blog
-});
-```
-
-**② `src/consts.ts`** — 改博客名称和作者：
+**① `src/consts.ts`** — 改域名和博客名称：
 
 ```ts
+// 只需改这一行，所有地方（sitemap、robots.txt、CNAME）都会自动跟着变
+export const SITE_URL = 'https://你的用户名.github.io/你的仓库名';
+
 export const SITE_TITLE = '你的博客名称';
 export const SITE_AUTHOR = '你的名字';
 ```
 
-**③ `src/i18n/translations.ts`** — 找到 `zh` 部分，把 `hero.name` 改成你的名字，`hero.title` 改成你的职业，`hero.description` 改成你的简介。其他文案按需修改。
+> **注意**：`SITE_URL` 是整个项目的域名配置中心。sitemap、robots.txt、CNAME 都是构建时自动从这个值生成的，不需要手动改其他文件。
+
+**② `src/i18n/translations.ts`** — 找到 `zh` 部分，把 `hero.name` 改成你的名字，`hero.title` 改成你的职业，`hero.description` 改成你的简介。其他文案按需修改。
+
+**③ `src/consts.ts`** 中的 `UTTERANCES_CONFIG.repo` — 改成你的仓库地址：
+
+```ts
+export const UTTERANCES_CONFIG = {
+  repo: '你的用户名/你的仓库名',
+  // ...
+};
+```
 
 ### 1.3 启用 GitHub Pages
 
@@ -54,17 +60,55 @@ https://你的用户名.github.io/你的仓库名
 
 ---
 
-## 2. 写一篇博客文章
+## 2. 绑定自定义域名（可选）
 
-### 2.1 复制模板
+如果你有自己的域名（如 `www.example.com`），可以替换默认的 GitHub Pages 地址。
+
+### 2.1 改配置
+
+打开 `src/consts.ts`，把 `SITE_URL` 改成你的域名：
+
+```ts
+export const SITE_URL = 'https://www.example.com';
+```
+
+提交后，项目会自动生成 `CNAME`、`robots.txt`、`sitemap-index.xml`，所有 URL 都指向你的域名。
+
+### 2.2 配置 DNS 解析
+
+到你的域名服务商（如腾讯云、阿里云、Cloudflare）添加 DNS 解析记录：
+
+| 主机记录 | 记录类型 | 记录值 | TTL |
+|----------|----------|--------|-----|
+| `www` | **CNAME** | `你的用户名.github.io.` | 600 |
+
+> 如果也想让裸域名（不带 www）直接访问，再加一条：
+
+| 主机记录 | 记录类型 | 记录值 | TTL |
+|----------|----------|--------|-----|
+| `@` | **CNAME** | `你的用户名.github.io.` | 600 |
+
+### 2.3 GitHub Pages 绑定域名
+
+1. 进入仓库 **Settings → Pages**
+2. 找到 **Custom domain** 区域，输入你的域名（如 `www.example.com`），点 **Save**
+3. 等检测通过后，勾选下方的 **Enforce HTTPS** 复选框
+
+DNS 生效后（通常 1-5 分钟），访问你的域名就能打开博客了。旧的 GitHub Pages 地址会自动重定向到新域名。
+
+---
+
+## 3. 写一篇博客文章
+
+### 3.1 复制模板
 
 打开 `src/content/blog/_TEMPLATE.md`，点击右上角 **复制** 按钮（或 Raw → 全选复制）。
 
-### 2.2 创建新文件
+### 3.2 创建新文件
 
 在 `src/content/blog/` 目录下，点击 **Add file → Create new file**，文件名用英文+连字符，例如 `my-first-post.md`。把模板内容粘贴进去。
 
-### 2.3 填写内容
+### 3.3 填写内容
 
 模板里已经标注清楚了：
 
@@ -80,7 +124,7 @@ https://你的用户名.github.io/你的仓库名
 | 结尾 `---` | **不可删除**，frontmatter 结束标记 |
 | `---` 之后 | 文章正文，标准 Markdown |
 
-### 2.4 文章配图
+### 3.4 文章配图
 
 图片按文章分文件夹管理，路径格式：`src/assets/blog-images/文章文件名（不含.md）/`
 
@@ -97,13 +141,13 @@ src/assets/blog-images/my-first-post/image-2.png
 ![图片描述](../../assets/blog-images/my-first-post/image-1.png)
 ```
 
-### 2.5 提交
+### 3.5 提交
 
 填写 commit message，点击 **Commit changes**。等 Actions 跑完，文章就上线了。
 
 ---
 
-## 3. 添加作品卡片
+## 4. 添加作品卡片
 
 在 `src/content/projects/` 目录下新建 `.md` 文件，每个文件一个项目：
 
@@ -125,7 +169,7 @@ order: 1                                  # 可选，数字越小越靠前
 
 ---
 
-## 4. 修改个人信息
+## 5. 修改个人信息
 
 所有内容都在 `src/content/` 目录下，用 Markdown 文件管理，直接在 GitHub 网页上编辑即可：
 
@@ -138,7 +182,7 @@ order: 1                                  # 可选，数字越小越靠前
 
 ---
 
-## 5. 启用评论功能
+## 6. 启用评论功能
 
 博客使用 [Utterances](https://utteranc.es) 评论系统，评论以 GitHub Issues 形式存储在你的仓库中。
 
@@ -162,9 +206,12 @@ order: 1                                  # 可选，数字越小越靠前
 │   │   ├── timeline/              # 时间线
 │   │   └── hobbies/               # 兴趣爱好
 │   ├── i18n/translations.ts       # 中英文文案
-│   ├── consts.ts                  # 博客名称、作者等全局配置
+│   ├── consts.ts                  # ⭐ 全局配置（域名、博客名称、作者等）
 │   └── pages/                     # 页面（不要改）
-├── astro.config.mjs               # 站点配置（改 site 和 base）
+│       ├── CNAME.ts               # 自动从 SITE_URL 生成 GitHub Pages 域名绑定
+│       ├── robots.txt.ts          # 自动从 SITE_URL 生成 robots.txt
+│       └── sitemap-index.xml.ts   # 自动遍历文章生成 sitemap
+├── astro.config.mjs               # 站点配置（自动读取 SITE_URL，不需要改）
 └── README.md
 ```
 
