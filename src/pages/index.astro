@@ -6,10 +6,10 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { getCollection } from 'astro:content';
+import { withBase } from '../utils/path';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const base = import.meta.env.BASE_URL;
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -61,11 +61,11 @@ const projects = featuredProjects.map(p => p.data);
 					</p>
 
 					<div class="hero-cta reveal" data-delay="0.4">
-						<a href={`${base}/about`} class="btn-magnetic" data-magnetic>
+						<a href={withBase('/about')} class="btn-magnetic" data-magnetic>
 							<span class="btn-label">{t('hero.cta.projects')}</span>
 							<span class="btn-arrow">→</span>
 						</a>
-						<a href={`${base}/blog`} class="btn-ghost" data-magnetic>
+						<a href={withBase('/blog')} class="btn-ghost" data-magnetic>
 							{t('hero.cta.blog')}
 						</a>
 					</div>
@@ -153,7 +153,7 @@ const projects = featuredProjects.map(p => p.data);
 							</li>
 						))}
 					</ul>
-					<a href={`${base}/about`} class="link-arrow">
+					<a href={withBase('/about')} class="link-arrow">
 						{lang === 'zh' ? '了解更多' : 'Learn more'} <span>→</span>
 					</a>
 				</div>
@@ -222,7 +222,7 @@ const projects = featuredProjects.map(p => p.data);
 
 			<div class="blog-mag">
 				{posts.length > 0 && (
-					<a href={`${base}/blog/${posts[0].id}/`} class="blog-featured reveal-left">
+					<a href={withBase('blog', posts[0].id, '/')} class="blog-featured reveal-left">
 						<div class="feat-tag">{lang === 'zh' ? '精选' : 'Featured'}</div>
 						<div class="feat-date">
 							<FormattedDate date={posts[0].data.pubDate} />
@@ -234,7 +234,7 @@ const projects = featuredProjects.map(p => p.data);
 				)}
 				<div class="blog-side">
 					{posts.slice(1, 3).map((post, i) => (
-						<a href={`${base}/blog/${post.id}/`} class="blog-side-item reveal-right" data-delay={`${i * 0.1}`}>
+						<a href={withBase('blog', post.id, '/')} class="blog-side-item reveal-right" data-delay={`${i * 0.1}`}>
 							<div class="side-num">{String(i + 2).padStart(2, '0')}</div>
 							<div class="side-content">
 								<div class="side-date">
@@ -249,7 +249,7 @@ const projects = featuredProjects.map(p => p.data);
 			</div>
 
 			<div class="view-all">
-				<a href={`${base}/blog`} class="link-arrow">
+				<a href={withBase('/blog')} class="link-arrow">
 					{t('blog.backToList')} <span>→</span>
 				</a>
 			</div>

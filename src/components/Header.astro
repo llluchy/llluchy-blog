@@ -3,23 +3,23 @@ import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 import LangSwitch from './LangSwitch.astro';
 import { getLangFromUrl, useTranslations, getTranslatedPath } from '../i18n/utils';
+import { withBase } from '../utils/path';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const base = import.meta.env.BASE_URL;
 ---
 
 <header class="site-header">
 	<nav>
-		<a href={base} class="logo">
+		<a href={withBase()} class="logo">
 			<span class="logo-mark">✦</span>
 			<span class="logo-text">{SITE_TITLE}</span>
 		</a>
 		<div class="nav-links">
-			<HeaderLink href={base}>{t('nav.home')}</HeaderLink>
-			<HeaderLink href={`${base}/blog`}>{t('nav.blog')}</HeaderLink>
-			<HeaderLink href={`${base}/projects`}>{t('nav.projects')}</HeaderLink>
-			<HeaderLink href={`${base}/about`}>{t('nav.about')}</HeaderLink>
+			<HeaderLink href={withBase()}>{t('nav.home')}</HeaderLink>
+			<HeaderLink href={withBase('/blog')}>{t('nav.blog')}</HeaderLink>
+			<HeaderLink href={withBase('/projects')}>{t('nav.projects')}</HeaderLink>
+			<HeaderLink href={withBase('/about')}>{t('nav.about')}</HeaderLink>
 		</div>
 		<div class="nav-actions">
 			<LangSwitch />
