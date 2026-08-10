@@ -5,8 +5,8 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://llluchy.github.io',
-	base: '/llluchy-blog',
+	site: 'https://www.llluchy.cn',
+	base: '/',
 	trailingSlash: 'ignore',
 	integrations: [mdx()],
 	fonts: [

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://llluchy.github.io/llluchy-blog/sitemap-index.xml
+Sitemap: https://www.llluchy.cn/sitemap-index.xml
