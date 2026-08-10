@@ -1,6 +1,14 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  站点域名配置（Fork 后只需改这一处）                            ║
+// ║  格式：https://你的域名                                        ║
+// ║  示例：https://www.example.com                                 ║
+// ║  示例：https://用户名.github.io/仓库名                          ║
+// ╚══════════════════════════════════════════════════════════════╝
+export const SITE_URL = 'https://www.llluchy.cn';
+
 export const SITE_TITLE = 'My Private Blog';
 export const SITE_DESCRIPTION = 'A personal blog built with Astro';
 export const SITE_AUTHOR = 'llluchy';

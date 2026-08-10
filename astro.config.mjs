@@ -2,10 +2,11 @@
 
 import mdx from '@astrojs/mdx';
 import { defineConfig, fontProviders } from 'astro/config';
+import { SITE_URL } from './src/consts';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://www.llluchy.cn',
+	site: SITE_URL,
 	base: '/',
 	trailingSlash: 'ignore',
 	integrations: [mdx()],
