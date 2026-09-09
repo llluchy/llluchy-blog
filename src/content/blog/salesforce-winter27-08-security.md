@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 安全、身份与隐私：OAuth、MFA 与 Shield'
-description: '精选 Winter \'27 安全身份隐私：强制与即将强制的发布更新、连接应用迁外部客户端应用、MFA/邮件域、Backup and Recover、Data Detect。'
+title: 'Winter ''27 安全、身份与隐私：OAuth、MFA 与 Shield'
+description: '精选 Winter ''27 安全身份隐私：强制与即将强制的发布更新、连接应用迁外部客户端应用、MFA/邮件域、Backup and Recover、Data Detect。'
 pubDate: '2026-09-16'
 category: 'tech'
 ---
@@ -166,6 +166,6 @@ Shield Data Detect 扫 Data 360 时，先定数据所有者与误报流程，再
 落地时不要「一次全开」。先与企业 IdP 策略对齐 Passkey，再处理 Salesforce 原生 MFA 体验；邮件域则先解决历史验证例外，再收紧发件人规则，避免支持邮箱被退信淹没。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-07-revenue-sales`](/blog/salesforce-winter27-07-revenue-sales/)｜下一篇 → [`salesforce-winter27-09-service`](/blog/salesforce-winter27-09-service/)
