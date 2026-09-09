@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 Revenue 与 Sales：大行报价与销售智能体'
-description: '精选 Winter \'27 Agentforce Revenue Management 与 Agentforce Sales：一万五千行报价、促销与爬坡交易、Engagement 更名、Prospecting 与 Slack 销售。'
+title: 'Winter ''27 Revenue 与 Sales：大行报价与销售智能体'
+description: '精选 Winter ''27 Agentforce Revenue Management 与 Agentforce Sales：一万五千行报价、促销与爬坡交易、Engagement 更名、Prospecting 与 Slack 销售。'
 pubDate: '2026-09-15'
 category: 'tech'
 ---
@@ -150,6 +150,6 @@ Slack 中的 Agentforce Sales（Slackbot + Go 页面 + MCP）我放在第 10 篇
 销售智能体与收入引擎同时升级时，最大的组织风险是「代表在 Slack 或 Engagement 里推进了阶段，但报价配置规则尚未支持该产品组合」。预览环境要用真实产品目录联调，而不是用演示目录。财务、销售运营、CPQ 管理员应在同一场评审里签字。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-06-industries`](/blog/salesforce-winter27-06-industries/)｜下一篇 → [`salesforce-winter27-08-security`](/blog/salesforce-winter27-08-security/)
