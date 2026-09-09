@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 Industries 精选：我只盯影响面大的'
-description: 'Winter \'27 Industries 策展：汽车、通信、医疗、制造、公共部门与行业通用能力中，我优先验证的 Agentforce 与流程条目。'
+title: 'Winter ''27 Industries 精选：我只盯影响面大的'
+description: 'Winter ''27 Industries 策展：汽车、通信、医疗、制造、公共部门与行业通用能力中，我优先验证的 Agentforce 与流程条目。'
 pubDate: '2026-09-14'
 category: 'tech'
 ---
@@ -163,6 +163,6 @@ Industries 文档长，是因为它在同一套平台上叠了完全不同的合
 公共部门在目录上常与 Industries 并列，但许可、排班与支付（Inbound/Outbound Payments）模型很不一样。Taxpayer 360、多福利单申请、许可证智能体受理、统一排班与 S3 语义发现，每一项都可能是独立项目。政府云客户还要叠加 Hyperforce/MuleSoft/沙盒加速约束。不要把 Public Sector 当成「又一个行业云小节」一笔带过——若你们做公共部门，请把官方 Public Sector 整章列为必读，本篇只提供雷达。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-05-platform`](/blog/salesforce-winter27-05-platform/)｜下一篇 → [`salesforce-winter27-07-revenue-sales`](/blog/salesforce-winter27-07-revenue-sales/)
