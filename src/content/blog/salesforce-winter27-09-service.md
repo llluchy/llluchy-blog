@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 Service：联络中心、消息与 IT Service'
-description: '精选 Winter \'27 Service：Agentforce Contact Center 语音、Partner Contact Center、Messaging、Agentforce IT Service、个案与 Knowledge。'
+title: 'Winter ''27 Service：联络中心、消息与 IT Service'
+description: '精选 Winter ''27 Service：Agentforce Contact Center 语音、Partner Contact Center、Messaging、Agentforce IT Service、个案与 Knowledge。'
 pubDate: '2026-09-17'
 category: 'tech'
 ---
@@ -149,6 +149,6 @@ Service Assistant 等还有月度说明——做动态计划/服务计划的团�
 这些能力分散在不同许可包。预览前先在 Setup 核对你们实际拥有的附加组件，再决定试点队列，避免「发布说明有、组织里找不到按钮」的空转。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-08-security`](/blog/salesforce-winter27-08-security/)｜下一篇 → [`salesforce-winter27-10-more`](/blog/salesforce-winter27-10-more/)
