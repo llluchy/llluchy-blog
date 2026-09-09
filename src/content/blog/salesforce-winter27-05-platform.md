@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 Platform：API 68.0、Apex、LWC 与 Experience'
-description: '精选 Winter \'27 Platform：Apex 堆与弹性限制、API 退役、LWC GA 能力、Experience 安全、Data 360、AgentExchange 与 DX/MCP 工具链。'
+title: 'Winter ''27 Platform：API 68.0、Apex、LWC 与 Experience'
+description: '精选 Winter ''27 Platform：Apex 堆与弹性限制、API 退役、LWC GA 能力、Experience 安全、Data 360、AgentExchange 与 DX/MCP 工具链。'
 pubDate: '2026-09-13'
 category: 'tech'
 ---
@@ -172,6 +172,6 @@ Platform 里还有一批「不像平台、但会改变日常操作」的点：�
 若你们维护第二代托管包，请额外关注：智能体新元数据仅 2GP 支持、GraphQL 访客访问可控、以及托管包匿名 Apex 执行相关发布更新。ISV 安全审查材料应同步更新，避免客户在强制日之后才发现诊断脚本失效。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-04-commerce-marketing`](/blog/salesforce-winter27-04-commerce-marketing/)｜下一篇 → [`salesforce-winter27-06-industries`](/blog/salesforce-winter27-06-industries/)
