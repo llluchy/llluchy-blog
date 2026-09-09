@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 Analytics 与 Automation：报表嵌入、Flow 与测试'
-description: '精选 Winter \'27 分析与自动化：Lightning 报表嵌入 LWR、Data 360 报表、CRM Analytics，以及 Flow Builder、审批组件与测试模式。'
+title: 'Winter ''27 Analytics 与 Automation：报表嵌入、Flow 与测试'
+description: '精选 Winter ''27 分析与自动化：Lightning 报表嵌入 LWR、Data 360 报表、CRM Analytics，以及 Flow Builder、审批组件与测试模式。'
 pubDate: '2026-09-11'
 category: 'tech'
 ---
@@ -160,6 +160,6 @@ Flow 方面，我把回归分成构建期与运行期。构建期关注编辑历
 Automation 章里还有一批明显服务营销的能力：通过 REST API 更快触发订单确认 Flow，使交易消息从「数分钟」降到「数秒」；用标准记录元素直接管理营销对象；复制受众 Flow 而不中断进行中活动；Personalize Paths 预测转化。这些能力在架构上仍是 Flow，但所有权常在营销自动化团队。我建议在 Winter '27 预览里开一次联合评审：平台团队负责 API 版本与运行上下文，营销团队负责受众与同意，双方共同签测试场景。否则很容易出现「营销以为秒级发送已开、平台侧 Flow 仍钉在旧 API 版本」的缝隙。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-02-agentforce`](/blog/salesforce-winter27-02-agentforce/)｜下一篇 → [`salesforce-winter27-04-commerce-marketing`](/blog/salesforce-winter27-04-commerce-marketing/)
