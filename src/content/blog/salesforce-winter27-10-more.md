@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 其他：Field Service、Headless、Hyperforce、Partner、Slack'
-description: 'Winter \'27 收尾篇：Field Service VRA 隐私、Headless/Vibes/MCP、Hyperforce on GCP、Partner Cloud MDF、Slack 中的 Agentforce Sales，以及我如何用这套系列。'
+title: 'Winter ''27 其他：Field Service、Headless、Hyperforce、Partner、Slack'
+description: 'Winter ''27 收尾篇：Field Service VRA 隐私、Headless/Vibes/MCP、Hyperforce on GCP、Partner Cloud MDF、Slack 中的 Agentforce Sales，以及我如何用这套系列。'
 pubDate: '2026-09-18'
 category: 'tech'
 ---
@@ -158,6 +158,6 @@ Field Service 侧则问：VRA 录制是仅音频、整场视频，还是按需�
 **Slack Sales：** Go 页面降低了 MCP 手工配置门槛，但降低门槛不等于降低风险。建议：仅对试点销售组开放；限制可执行的阶段变更与金额字段；打开后再核对 Salesforce 字段历史与 Slack 审计。Slack Business+ 许可不足时不要承诺全公司启用。与 Advanced Approvals 的 Slack 通知、各行业的 Slack 事件通知做通道分层，避免所有机器人挤在同一频道。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-09-service`](/blog/salesforce-winter27-09-service/)｜系列第一篇 → [`salesforce-winter27-01-overview`](/blog/salesforce-winter27-01-overview/)
