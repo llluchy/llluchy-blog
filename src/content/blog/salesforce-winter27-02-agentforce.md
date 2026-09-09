@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 Agentforce：默认启用、元数据精简与 Voice'
-description: '精选 Winter \'27 Agentforce 与生成式 AI：平台默认开启、AiAgentDefinition 迁移、Gemini 2.5 重路由到 3.5、Voice 转录与 SIP，以及审批智能体。'
+title: 'Winter ''27 Agentforce：默认启用、元数据精简与 Voice'
+description: '精选 Winter ''27 Agentforce 与生成式 AI：平台默认开启、AiAgentDefinition 迁移、Gemini 2.5 重路由到 3.5、Voice 转录与 SIP，以及审批智能体。'
 pubDate: '2026-09-10'
 category: 'tech'
 ---
@@ -173,6 +173,6 @@ Experience Builder 智能体 Beta 退场属于「资产突然不可用」类风�
 在预览沟通里，我会明确告诉业务：Agentforce 平台默认启用并不自动产生新账单，但会改变管理员工具可见性与智能体部署方式；真正的费用与用量仍取决于许可、对话量与 Voice 号码等既有计量。模型重路由则可能在不改你提示词文本的情况下改变输出质量，因此必须回归，而不是「等用户投诉」。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-01-overview`](/blog/salesforce-winter27-01-overview/)｜下一篇 → [`salesforce-winter27-03-analytics-automation`](/blog/salesforce-winter27-03-analytics-automation/)
