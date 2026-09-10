@@ -3,13 +3,65 @@ title: 'Salesforce Winter ''27 导读：我怎么读这份发布说明'
 description: '作为 Salesforce 工程师，我梳理了 Winter ''27 发布说明的读法、总体变更、本版强制发布更新，以及功能何时可用矩阵，方便沙盒预览前建立清单。'
 pubDate: '2026-09-09'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
 
 这是 Winter '27 系列的第一篇。官方发布说明从 Agentforce 铺到 Slack，体量很大；我不会把全文翻译再贴一遍，而是按工程师视角做**精选导读**：哪些要先测、哪些是强制执行、哪些可以往后排。
 
 全文依据我整理的中文对照稿（源文档最后更新 **2026.09.01**），**这是策展阅读，不是完整发布说明**。落地前请以 Salesforce 官方 Winter '27 Release Notes、组织内 **Release Updates** 页，以及 Trust 维护窗口为准。
 
-**系列导航**：下一篇 → [`salesforce-winter27-02-agentforce`](/blog/salesforce-winter27-02-agentforce/)
+<a id="series-map"></a>
+
+## 本系列怎么找章节（树状导航）
+
+不知道从哪开始，就先看角色 / 职责对应的树枝，再点进章节：
+
+```text
+Salesforce Winter '27
+├─ 先建立全局清单 ──► 01 导读与总体
+├─ AI / 智能体
+│  └─ Agentforce、Voice、元数据 ──► 02 Agentforce
+├─ 报表 / 自动化
+│  ├─ Analytics、Data Cloud 报表 ──► 03 Analytics & Automation
+│  └─ Flow、审批、测试模式 ───────► 03 Analytics & Automation
+├─ 商务 / 营销
+│  ├─ Commerce / Shopper Agent ──► 04 Commerce & Marketing
+│  └─ Marketing Cloud Next ──────► 04 Commerce & Marketing
+├─ 平台工程
+│  ├─ Apex / LWC / API 68.0 ─────► 05 Platform
+│  └─ Experience / Data 360 / DX ─► 05 Platform
+├─ 行业云（精选） ───────────────► 06 Industries
+├─ 收入 / 销售
+│  ├─ Revenue / 大行报价 ────────► 07 Revenue & Sales
+│  └─ Sales / Prospecting ───────► 07 Revenue & Sales
+├─ 安全 / 身份 / 隐私 ───────────► 08 Security
+├─ 服务
+│  ├─ 联络中心 / Messaging ──────► 09 Service
+│  └─ IT Service / Case ─────────► 09 Service
+└─ 其他
+   ├─ Field Service / Headless ──► 10 More
+   ├─ Hyperforce / Partner ──────► 10 More
+   └─ Slack ─────────────────────► 10 More
+```
+
+| 如果你关心… | 去读 |
+| --- | --- |
+| 强制发布更新、沙盒预览清单 | [01 导读与总体](/blog/salesforce-winter27-01-overview/) |
+| Agentforce 默认开启、Voice、模型重路由 | [02 Agentforce](/blog/salesforce-winter27-02-agentforce/) |
+| 报表嵌入、Flow Builder、测试 | [03 Analytics 与 Automation](/blog/salesforce-winter27-03-analytics-automation/) |
+| 店面智能体、营销编排 | [04 Commerce 与 Marketing](/blog/salesforce-winter27-04-commerce-marketing/) |
+| API / Apex / LWC / Experience | [05 Platform](/blog/salesforce-winter27-05-platform/) |
+| 汽车/通信/医疗等行业精选 | [06 Industries](/blog/salesforce-winter27-06-industries/) |
+| 报价、促销、销售智能体 | [07 Revenue 与 Sales](/blog/salesforce-winter27-07-revenue-sales/) |
+| OAuth、MFA、Shield | [08 安全](/blog/salesforce-winter27-08-security/) |
+| 联络中心、消息、IT Service | [09 Service](/blog/salesforce-winter27-09-service/) |
+| Field Service、Headless、Slack 等 | [10 其他](/blog/salesforce-winter27-10-more/) |
+
+标签：在博客列表可用 **Salesforce** / **Winter 27** 过滤本系列。
+
+***
 
 <a id="toc"></a>
 ## 目录
@@ -148,7 +200,6 @@ Winter '27 强调：安装新捆绑包或升级时，可用自定义输入按业
 
 下一篇我会把 **Agentforce 与生成式 AI** 拆开：默认启用、`AiAgentDefinition`、Voice、Gemini 切换。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：我如何把发布说明变成工单
 
@@ -164,14 +215,9 @@ Winter '27 强调：安装新捆绑包或升级时，可用自定义输入按业
 
 最后提醒自己也提醒读者：本系列是策展，**不是**法律或合规意见，也不是完整功能目录。涉及安全强制与合同云区域时，请同步安全与采购同学，并以官方 Winter '27 Release Notes 为准。
 
-
-
 <a id="doc-tips"></a>
 ## 文档阅读小技巧
 
 官方提示：浏览器语言决定帮助站点语言；页脚可切换。已知问题单独维护，不要与发布说明混为一谈。预览期帮助链接可能指向上一版或不可用，Developers 文档把 Version 调到 Preview。反馈用带版本的话题标签，例如 `#Winter27Feedback`。我自己会把 Trust 维护窗口、沙盒是否预览、Release Updates 进度三张表放在同一页 wiki，升级周每天更新一行状态，比在聊天群里刷消息更不容易丢信息。
 
 
-***
-
-**系列导航**：下一篇 → [`salesforce-winter27-02-agentforce`](/blog/salesforce-winter27-02-agentforce/)
