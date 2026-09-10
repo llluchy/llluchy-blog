@@ -1,6 +1,6 @@
 ---
-title: 'Winter \'27 Commerce 与 Marketing：店面智能体与活动编排'
-description: '精选 Winter \'27 Agentforce Commerce 与 Marketing Cloud Next：Shopper Agent 分析、B2B 订单失败处理、订阅定价，以及营销智能体与渠道增强。'
+title: 'Winter ''27 Commerce 与 Marketing：店面智能体与活动编排'
+description: '精选 Winter ''27 Agentforce Commerce 与 Marketing Cloud Next：Shopper Agent 分析、B2B 订单失败处理、订阅定价，以及营销智能体与渠道增强。'
 pubDate: '2026-09-12'
 category: 'tech'
 ---
@@ -56,7 +56,7 @@ B2C 主版本按四阶段推到各 POD；26.10 等被标进 Winter '27 发布说
 - 订单失败时可**自动释放已预留资源**，减少库存不匹配；支付冲正或自定义清理需另行配置。
 - 购物车状态为 Failed 时，可自动发「订单创建失败」邮件；待处理状态不发。
 
-### Summer \'25 之前的 Place Order 编排
+### Summer '25 之前的 Place Order 编排
 
 若商店在 Summer '25 前创建且仍用旧 **Place Order** 编排，会被排除在 **Order Ingestion** 作业之外——该后台进程负责结账/购物车转订单。也就是说，旧编排商店的会话会被跳过。这是升级清单上的硬项：要么迁新编排，要么接受不被 ingestion 处理的后果。
 
@@ -160,6 +160,6 @@ Marketing Cloud Next 的智能体把策略、内容、潜在客户培育往前�
 对外培训材料建议同时写「Commerce / Agentforce Commerce」「Marketing Cloud Next / Agentforce Marketing」，并注明应用内可能仍显示旧名。这样减少「我在 Setup 搜不到」的工单。B2C 部署表、B2B 失败订单行为、营销智能体许可组合，是三份应分发给不同所有者的一页纸，而不是塞进同一份 50 页 PPT。
 
 
----
+***
 
 **系列导航**：上一篇 → [`salesforce-winter27-03-analytics-automation`](/blog/salesforce-winter27-03-analytics-automation/)｜下一篇 → [`salesforce-winter27-05-platform`](/blog/salesforce-winter27-05-platform/)

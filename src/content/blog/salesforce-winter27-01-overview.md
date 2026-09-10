@@ -1,6 +1,6 @@
 ---
-title: 'Salesforce Winter \'27 导读：我怎么读这份发布说明'
-description: '作为 Salesforce 工程师，我梳理了 Winter \'27 发布说明的读法、总体变更、本版强制发布更新，以及功能何时可用矩阵，方便沙盒预览前建立清单。'
+title: 'Salesforce Winter ''27 导读：我怎么读这份发布说明'
+description: '作为 Salesforce 工程师，我梳理了 Winter ''27 发布说明的读法、总体变更、本版强制发布更新，以及功能何时可用矩阵，方便沙盒预览前建立清单。'
 pubDate: '2026-09-09'
 category: 'tech'
 ---
@@ -18,8 +18,8 @@ category: 'tech'
 - [发布说明本身变了什么](#rn-changes)
 - [怎么用这份导读](#how)
 - [总体：我先扫的几件事](#overall)
-- [发布更新：Winter \'27 强制项](#ru-winter)
-- [往后看：Spring / Summer \'27](#ru-later)
+- [发布更新：Winter '27 强制项](#ru-winter)
+- [往后看：Spring / Summer '27](#ru-later)
 - [功能何时、如何可用](#when)
 - [我的预览清单](#checklist)
 
@@ -89,7 +89,7 @@ Winter '27 强调：安装新捆绑包或升级时，可用自定义输入按业
 **Advisements（建议，Beta）** 向管理员推送组织风险与分步整改，并跟踪完成情况。**Help Agent** 在部分套件中提供与权限、当前工作流匹配的上下文帮助。我把它们当「运维信号」，不会替代正式的变更管理与 CAB。
 
 <a id="ru-winter"></a>
-## 发布更新：Winter \'27 强制项
+## 发布更新：Winter '27 强制项
 
 进入 Setup → 快速查找「发布更新（Release Updates）」。本版计划强制执行的，我优先勾这些（描述来自源译文；**以你 org 页面上的 Complete Steps By 为准**）：
 
@@ -106,7 +106,7 @@ Winter '27 强调：安装新捆绑包或升级时，可用自定义输入按业
 见上一节。注意部分更新互相依赖（例如卡片类增强依赖页眉/模态那条）。强制前用 Test Run，在放大与小视口下点一遍关键控制台。
 
 <a id="ru-later"></a>
-## 往后看：Spring / Summer \'27
+## 往后看：Spring / Summer '27
 
 这些未必在 Winter '27 强制，但现在就要排期：
 
@@ -114,11 +114,11 @@ Winter '27 强调：安装新捆绑包或升级时，可用自定义输入按业
 | --- | --- | --- |
 | 2026-11-30 | 将 OAuth 2.0 **设备流**限制为带 localhost 回调的**本地外部客户端应用**；连接应用需迁到外部客户端应用 | IoT / CLI 式设备授权、演示设备流会断 |
 | 2026-12-01 | **保留电子邮件验证例外**：曾通过支持关闭邮件验证的，需配置已授权域名 | 允许列表会被移除，发信能力可能中断 |
-| Spring \'27（约 2027-02-20） | OAuth **用户代理流 / 混合用户代理流**停用；连接应用 **用户名-密码流**停用（曾计划 Winter '27，已推迟） | 大量老集成的生死线 |
-| Spring \'27 | 从 Aura 操作响应的自定义对象数据中**移除非公共字段** | 读内部字段的 LWC/Aura 会炸 |
-| Spring \'27 | Salesforce Connect 跨组织适配器**旧身份验证**停用 → 迁命名凭据 | 跨 org 外联要改认证 |
-| Spring \'27 | **Salesforce to Salesforce** 停用 | 迁 Partner Cloud / Data Cloud One / MuleSoft Anypoint / MuleSoft for Flow 等 |
-| Summer \'27 / \'28 | Platform API **31.0–40.0** 弃用与退役 | 现在就把调用版本扫进技术债 |
+| Spring '27（约 2027-02-20） | OAuth **用户代理流 / 混合用户代理流**停用；连接应用 **用户名-密码流**停用（曾计划 Winter '27，已推迟） | 大量老集成的生死线 |
+| Spring '27 | 从 Aura 操作响应的自定义对象数据中**移除非公共字段** | 读内部字段的 LWC/Aura 会炸 |
+| Spring '27 | Salesforce Connect 跨组织适配器**旧身份验证**停用 → 迁命名凭据 | 跨 org 外联要改认证 |
+| Spring '27 | **Salesforce to Salesforce** 停用 | 迁 Partner Cloud / Data Cloud One / MuleSoft Anypoint / MuleSoft for Flow 等 |
+| Summer '27 / '28 | Platform API **31.0–40.0** 弃用与退役 | 现在就把调用版本扫进技术债 |
 
 另外还有计划在 Spring '27 强制的待办事项列表 / 双列列表框无障碍增强等——一并放进季度安全与 UX 回归包。
 
@@ -172,6 +172,6 @@ Winter '27 强调：安装新捆绑包或升级时，可用自定义输入按业
 官方提示：浏览器语言决定帮助站点语言；页脚可切换。已知问题单独维护，不要与发布说明混为一谈。预览期帮助链接可能指向上一版或不可用，Developers 文档把 Version 调到 Preview。反馈用带版本的话题标签，例如 `#Winter27Feedback`。我自己会把 Trust 维护窗口、沙盒是否预览、Release Updates 进度三张表放在同一页 wiki，升级周每天更新一行状态，比在聊天群里刷消息更不容易丢信息。
 
 
----
+***
 
 **系列导航**：下一篇 → [`salesforce-winter27-02-agentforce`](/blog/salesforce-winter27-02-agentforce/)
