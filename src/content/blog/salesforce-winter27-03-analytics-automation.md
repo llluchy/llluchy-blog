@@ -3,13 +3,16 @@ title: 'Winter ''27 Analytics 与 Automation：报表嵌入、Flow 与测试'
 description: '精选 Winter ''27 分析与自动化：Lightning 报表嵌入 LWR、Data 360 报表、CRM Analytics，以及 Flow Builder、审批组件与测试模式。'
 pubDate: '2026-09-11'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 这一篇合并 **Analytics（分析）** 与 **Automation（自动化）**。两者在 Winter '27 里都更「嵌进工作流」：报表不再只能待在经典报表页，Flow Builder 则在 Cosmos 主题、编辑历史和测试隔离上补了一大截工程体验。
 
 同样是策展，不是全文。Tableau Next 大量能力按月发布，这里只抓与 CRM 工程师日常最相关的点；Flow 则优先写会影响设计与回归的行为。
-
-**系列导航**：上一篇 → [`salesforce-winter27-02-agentforce`](/blog/salesforce-winter27-02-agentforce/)｜下一篇 → [`salesforce-winter27-04-commerce-marketing`](/blog/salesforce-winter27-04-commerce-marketing/)
 
 <a id="toc"></a>
 ## 目录
@@ -140,7 +143,6 @@ Marketing Cloud 相关 Flow 能力（REST 快速触发订单确认、营销对�
 
 下一篇：**Commerce + Marketing**——Shopper Agent 度量、B2B 订单失败处理、Marketing Cloud Next 智能体。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：分析嵌入与 Flow 回归怎么抓重点
 
@@ -152,14 +154,9 @@ Flow 方面，我把回归分成构建期与运行期。构建期关注编辑历
 
 审批与编排上，Request Approvals 一页最多十个 Flow 审批，容易变成「入口过多」。产品上要收敛默认可见的审批，而不是把十个全堆上。Work Guide 自动打开下一工作项对客服吞吐有帮助，但要确认不会在用户还在写备注时抢焦点。若发布说明变更里某条 Screen Flow 窗口大小或动态批处理能力被暂时移除，就不要写进本版本对业务的承诺。
 
-
-
 <a id="flow-marketing-cross"></a>
 ## 与营销自动化的交叉点
 
 Automation 章里还有一批明显服务营销的能力：通过 REST API 更快触发订单确认 Flow，使交易消息从「数分钟」降到「数秒」；用标准记录元素直接管理营销对象；复制受众 Flow 而不中断进行中活动；Personalize Paths 预测转化。这些能力在架构上仍是 Flow，但所有权常在营销自动化团队。我建议在 Winter '27 预览里开一次联合评审：平台团队负责 API 版本与运行上下文，营销团队负责受众与同意，双方共同签测试场景。否则很容易出现「营销以为秒级发送已开、平台侧 Flow 仍钉在旧 API 版本」的缝隙。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-02-agentforce`](/blog/salesforce-winter27-02-agentforce/)｜下一篇 → [`salesforce-winter27-04-commerce-marketing`](/blog/salesforce-winter27-04-commerce-marketing/)
