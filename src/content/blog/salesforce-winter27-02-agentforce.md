@@ -3,13 +3,16 @@ title: 'Winter ''27 Agentforce：默认启用、元数据精简与 Voice'
 description: '精选 Winter ''27 Agentforce 与生成式 AI：平台默认开启、AiAgentDefinition 迁移、Gemini 2.5 重路由到 3.5、Voice 转录与 SIP，以及审批智能体。'
 pubDate: '2026-09-10'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 这一篇只谈 **Agentforce 与生成式 AI**。我按「会影响现网 / 会影响部署流水线 / 可以稍后试点」分层写，避免把每月 changelog 整段搬过来。
 
 源材料来自 Winter '27 中文对照（最后更新 2026.09.01）。**策展阅读，非全文**；以官方 Release Notes 与你的许可矩阵为准。
-
-**系列导航**：上一篇 → [`salesforce-winter27-01-overview`](/blog/salesforce-winter27-01-overview/)｜下一篇 → [`salesforce-winter27-03-analytics-automation`](/blog/salesforce-winter27-03-analytics-automation/)
 
 <a id="toc"></a>
 ## 目录
@@ -126,7 +129,6 @@ Agentforce Voice 现在强制执行 Salesforce Voice（原生电话）的号码�
 
 下一篇：**Analytics + Automation**——LWR 嵌入报表、Data 360 报表、Flow Builder 与测试模式。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：智能体交付流水线怎么改
 
@@ -139,8 +141,6 @@ Winter '27 对智能体交付的实质影响，是「平台默认开」叠加「
 **门禁 C：模型与语音。** 把 10 月 20 日 Gemini 重路由写成日历事件；黄金集既要覆盖提示词，也要覆盖工具调用失败时的降级话术。Voice 侧把「关联相关语音通话」、沙盒 10 个号上限、SIP 头开关做成配置检查表。质检若依赖通话后转录，必须验证智能体段在结束后仍在。
 
 Experience Builder 智能体 Beta 退场属于「资产突然不可用」类风险：在元数据与文档里全文搜索相关模板名，能迁则迁，不能迁就明确下线公告。审批智能体适合与现有 Flow 审批做职责划分：谁负责摘要评论，谁负责最终落库与审计，避免两个系统互相撤回。
-
-
 
 <a id="timeline"></a>
 ## 时间线速查（Agentforce）
@@ -157,8 +157,6 @@ Experience Builder 智能体 Beta 退场属于「资产突然不可用」类风�
 
 如果你在写变更说明，建议单独加一节「用户会感受到什么」：平台启用本身可能无感，但管理员会突然多出 Builder 入口；模型重路由可能让既有提示词「变嘴」；Voice 转录变完整后，质检抽样标准要改。把这些写成给业务的人话，比只贴发布说明标题更有用。
 
-
-
 <a id="ops-checklist"></a>
 ## 上线当天我会盯的操作项
 
@@ -169,10 +167,6 @@ Experience Builder 智能体 Beta 退场属于「资产突然不可用」类风�
 5. 搜索并下线 Experience Builder 智能体 Beta 残留。
 6. 若启用审批智能体，确认撤回操作的审计字段与现有审批对象一致。
 
-
 在预览沟通里，我会明确告诉业务：Agentforce 平台默认启用并不自动产生新账单，但会改变管理员工具可见性与智能体部署方式；真正的费用与用量仍取决于许可、对话量与 Voice 号码等既有计量。模型重路由则可能在不改你提示词文本的情况下改变输出质量，因此必须回归，而不是「等用户投诉」。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-01-overview`](/blog/salesforce-winter27-01-overview/)｜下一篇 → [`salesforce-winter27-03-analytics-automation`](/blog/salesforce-winter27-03-analytics-automation/)
