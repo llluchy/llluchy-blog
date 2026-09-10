@@ -3,11 +3,14 @@ title: 'Winter ''27 其他：Field Service、Headless、Hyperforce、Partner、S
 description: 'Winter ''27 收尾篇：Field Service VRA 隐私、Headless/Vibes/MCP、Hyperforce on GCP、Partner Cloud MDF、Slack 中的 Agentforce Sales，以及我如何用这套系列。'
 pubDate: '2026-09-18'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 最后一篇收拾「独立成章但常被主云发布会省略」的主题：Field Service、Headless 360、Hyperforce、Partner Cloud、Slack，并补一句我接下来的预览节奏。读完系列仍请回到官方全文——尤其 Industries、Service、Platform 未展开的对象级变更。
-
-**系列导航**：上一篇 → [`salesforce-winter27-09-service`](/blog/salesforce-winter27-09-service/)｜回目录感：[导读篇](/blog/salesforce-winter27-01-overview/)
 
 <a id="toc"></a>
 ## 目录
@@ -117,7 +120,6 @@ Winter '27 Slack 节相对聚焦但很关键：
 
 我是 llluchy。若某章与你们 org 的许可对不上，以 Setup 与合约为准——发布说明「有条目」从不等于「你已开通」。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：收尾篇的共同主题
 
@@ -127,14 +129,10 @@ Field Service VRA、Headless MCP、Hyperforce 多云、Partner MDF 智能体、S
 
 系列写到这里结束。若你只读一篇，请读导读篇的发布更新表，然后只深挖你们已购买的云。我是 llluchy，这篇以及同系列文章都基于 Winter '27 中文对照策展，**请以官方 Release Notes 为最终依据**，并在沙盒验证后再进生产。
 
-
-
 <a id="reading-order"></a>
 ## 若时间不够，请按这个顺序砍范围
 
 时间不够时，我建议的最小阅读集是：01 导读（强制更新）→ 08 安全（OAuth）→ 02 Agentforce（默认启用与模型）→ 你们正在实施的业务云一篇 → 10 收尾里与自己相关的 Hyperforce/Slack/FS。Industries 与 Marketing 长尾、Tableau Next 月更、Field Service 补丁号，改成「订阅官方变更」而不是「一次读完」。Headless 的 Vibes/MCP 适合开发平台组每周扫，不适合全员会通读。这样可以把 Winter '27 从「不可能读完的 PDF」变成「可执行的几张工单」。
-
-
 
 <a id="hyperforce-questions"></a>
 ## 给架构评审的三个 Hyperforce 问题
@@ -145,10 +143,7 @@ Field Service VRA、Headless MCP、Hyperforce 多云、Partner MDF 智能体、S
 
 Field Service 侧则问：VRA 录制是仅音频、整场视频，还是按需片段？谁有权开始/停止录制？Partner 与 Slack 侧问：MDF 智能体能否写资金申请、Slack Sales 能否改阶段——权限与审计是否足够。把问题抛给架构评审，比把整章发布说明贴进会议材料更有效。
 
-
 写完十篇，我自己的感受是：Winter '27 真正的主线是「Agentforce 成为默认工作方式」叠加「安全与 API 契约收紧」。Field Service、Hyperforce、Partner、Slack 是这条主线在边界场景的投影。若你的团队只能做三件事，请做：发布更新与 OAuth 迁移、Agentforce/模型回归、以及一条与你业务相关的端到端智能体链路。其余交给订阅与分期。
-
-
 
 <a id="partner-slack-ops"></a>
 ## Partner 与 Slack：运营侧注意点
@@ -158,6 +153,3 @@ Field Service 侧则问：VRA 录制是仅音频、整场视频，还是按需�
 **Slack Sales：** Go 页面降低了 MCP 手工配置门槛，但降低门槛不等于降低风险。建议：仅对试点销售组开放；限制可执行的阶段变更与金额字段；打开后再核对 Salesforce 字段历史与 Slack 审计。Slack Business+ 许可不足时不要承诺全公司启用。与 Advanced Approvals 的 Slack 通知、各行业的 Slack 事件通知做通道分层，避免所有机器人挤在同一频道。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-09-service`](/blog/salesforce-winter27-09-service/)｜系列第一篇 → [`salesforce-winter27-01-overview`](/blog/salesforce-winter27-01-overview/)
