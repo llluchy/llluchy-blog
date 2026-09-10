@@ -3,13 +3,16 @@ title: 'Winter ''27 Industries 精选：我只盯影响面大的'
 description: 'Winter ''27 Industries 策展：汽车、通信、医疗、制造、公共部门与行业通用能力中，我优先验证的 Agentforce 与流程条目。'
 pubDate: '2026-09-14'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 Industries 一章在源文档里非常长（汽车、通信、消费品、教育、能源、金融、医疗、保险、生命科学、制造、媒体、净零、非营利、行业通用……）。**我不会也不应该在博客里逐条翻译。** 这一篇是策展：按「Agentforce 是否直接进前台」「是否改变核心交易/理赔/排班链路」「是否和 Platform/Revenue 共用组件」来挑。
 
 若你只做单一行业云，请回到官方该行业小节做完整阅读；本篇目标是帮多产品团队建立雷达。
-
-**系列导航**：上一篇 → [`salesforce-winter27-05-platform`](/blog/salesforce-winter27-05-platform/)｜下一篇 → [`salesforce-winter27-07-revenue-sales`](/blog/salesforce-winter27-07-revenue-sales/)
 
 <a id="toc"></a>
 ## 目录
@@ -126,7 +129,6 @@ Industries Common Features 覆盖跨行业与 Revenue 等共用能力——做�
 
 下一篇：**Revenue Management + Sales**——大行报价、爬坡交易、Agentforce Sales 更名与 Engagement。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：多行业 org 的预览战术
 
@@ -138,24 +140,17 @@ Industries 文档长，是因为它在同一套平台上叠了完全不同的合
 
 公共部门统一排班与福利多项目申请，配置面极宽，Salesforce Go 能加速，但也会一次性写入大量元数据——装完立刻做版本对比，并准备「只启用纳税人门户、暂缓排班」这类分期开关策略。行业通用功能节是 ISV 的朋友：能下沉到通用层的，不要在每个行业包里复制一份。
 
-
-
 <a id="skip-list"></a>
 ## 我明确跳过了什么
 
 为控制篇幅，本篇没有展开：各行业「新增与变更对象」全表、Connect REST 逐资源说明、每个 Salesforce Go 预配置包的字段清单、保险 Digital Insurance 产品模型细节、媒体库存地图的操作步骤、净零记分卡字段、非营利资助对象模型等。这些对实施项目至关重要，但对「跨云雷达」文章会变成噪声。正确做法是：用本篇决定优先级 → 打开官方对应行业节 → 把对象与 API 变更贴进你们的元数据评审。若你发现本篇点名的 Concierge、Taxpayer、Attendance、Warranty Assistant 等与许可不符，以合约为准，不要根据博客去承诺客户。
-
-
 
 <a id="cross-cloud"></a>
 ## 跨云样板：教育出勤这条链
 
 源说明里的出勤管理是很好的跨云样板：Marketing Cloud Next 事件触发 Flow 发短信 → 入站 Omni-Channel Flow 接入语音智能体 → Attendance Management Agent 采集说明并更新正式出勤 → Slack 通知教师。它同时碰到营销、语音、行业对象与 Slack。若你们要向管理层解释「什么叫 Agentforce 落地」，可以用这条链做演示，但生产前必须核对 SMS 代码租约、Voice 附加组件、教育云许可与教师 Slack 工作区治理。类似地，能源多站点报价上传的 Slack 通知、汽车 Concierge 进 Experience，都是「一处演示、多团队验收」的候选。
 
-
 实施伙伴常问「先做哪个行业云」。我的经验是：先做已有生产用量且依赖共享底座（定价、语音、Experience）的云，用一条跨云链路打穿预览流程，再横向复制到其他行业。切忌并行开启五个 Salesforce Go 一键包，否则元数据冲突会淹没真正的功能缺陷。
-
-
 
 <a id="public-vs-industries"></a>
 ## 公共部门为何单独强调
@@ -163,6 +158,3 @@ Industries 文档长，是因为它在同一套平台上叠了完全不同的合
 公共部门在目录上常与 Industries 并列，但许可、排班与支付（Inbound/Outbound Payments）模型很不一样。Taxpayer 360、多福利单申请、许可证智能体受理、统一排班与 S3 语义发现，每一项都可能是独立项目。政府云客户还要叠加 Hyperforce/MuleSoft/沙盒加速约束。不要把 Public Sector 当成「又一个行业云小节」一笔带过——若你们做公共部门，请把官方 Public Sector 整章列为必读，本篇只提供雷达。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-05-platform`](/blog/salesforce-winter27-05-platform/)｜下一篇 → [`salesforce-winter27-07-revenue-sales`](/blog/salesforce-winter27-07-revenue-sales/)
