@@ -3,13 +3,16 @@ title: 'Winter ''27 安全、身份与隐私：OAuth、MFA 与 Shield'
 description: '精选 Winter ''27 安全身份隐私：强制与即将强制的发布更新、连接应用迁外部客户端应用、MFA/邮件域、Backup and Recover、Data Detect。'
 pubDate: '2026-09-16'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 安全篇我写得尽量「可执行」。Winter '27 不是只加功能，而是把一串**访问控制与 OAuth 收紧**推到强制时间表上。若你们还有用户名-密码流、用户代理流、或大量 Connected Apps，这一篇应和导读篇的发布更新表一起进安全委员会材料。
 
 策展阅读；Marketing Cloud Engagement 另有独立安全要求说明，MC 团队请读对应节，不要只看 CRM 这篇。
-
-**系列导航**：上一篇 → [`salesforce-winter27-07-revenue-sales`](/blog/salesforce-winter27-07-revenue-sales/)｜下一篇 → [`salesforce-winter27-09-service`](/blog/salesforce-winter27-09-service/)
 
 <a id="toc"></a>
 ## 目录
@@ -125,7 +128,6 @@ Data Detect 可扫描 **Data 360** 中的敏感数据；引导式 Flow 更易创
 
 下一篇：**Service**——Contact Center、消息渠道、IT Service 与知识。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：安全迁移的沟通话术
 
@@ -135,24 +137,17 @@ Data Detect 可扫描 **Data 360** 中的敏感数据；引导式 Flow 更易创
 
 Shield Data Detect 扫 Data 360 时，先定数据所有者与误报流程，再开全量扫描。Backup and Recover 能按记录查找、下载元数据、重载失败子对象，请用一次真正的恢复演练验证，而不是只看备份作业成功。邮件验证例外是经典遗忘项：查一下多年前是否开过支持工单关闭验证，有则立刻配授权域名。
 
-
-
 <a id="test-run-tips"></a>
 ## Test Run 实务tips
 
 做 Release Updates 的 Test Run 时，我固定抓三类证据：一是集成账号登录与批量作业日志（证明 SOAP login 与 OAuth 改造有效）；二是配置文件相关 UI 截图（证明 Profile Filtering 下支持人员仍能完成工单）；三是 Experience 访客与高倍放大无障碍录屏（证明站点与 Lightning 在强制后仍可用）。证据贴进工单，比写「已测试」三个字有用。若组织曾关闭邮件验证，把支持工单号也写进变更记录，方便审计为什么配置了授权域名。Passkey 与 MFA 体验改进适合与身份团队联合试点，先选 IT 员工，再推业务用户。
-
-
 
 <a id="inventory-template"></a>
 ## Connected Apps 盘点模板（字段）
 
 我给集成清单固定这些列：应用名称；类型（Connected / External Client）；回调 URL；是否 localhost；使用的 OAuth 流；是否用户名-密码；是否设备流；是否打包/分发；所有者团队；目标改造（迁 ECA / 改 Web Server+PKCE / 改 Client Credentials）；计划完成日；验证证据链接。把这张表贴进安全委员会，比口述「我们有不少旧集成」有效得多。同步再列一张「访客站点与高倍放大回归」表，覆盖 Profile Filtering 与无障碍强制。Data Detect 与 Backup 演练可作为并行工作流，但不要占用迁移主路径的同一批变更窗口。
 
-
 补一段给管理层的摘要：Winter '27 安全工作的主线不是新功能演示，而是在 2026 年底到 2027 年初前，完成弱 OAuth 流淘汰、连接应用迁移、邮件验证例外治理，以及简档与访客可见性收紧。做得好，用户几乎无感；做不好，会在某一天集中爆发登录与集成故障。Shield 与 Backup 增强是加分项，不能替代主线。
-
-
 
 <a id="mfa-detail"></a>
 ## MFA / 邮件功能清单（便于对官方）
@@ -166,6 +161,3 @@ Shield Data Detect 扫 Data 360 时，先定数据所有者与误报流程，再
 落地时不要「一次全开」。先与企业 IdP 策略对齐 Passkey，再处理 Salesforce 原生 MFA 体验；邮件域则先解决历史验证例外，再收紧发件人规则，避免支持邮箱被退信淹没。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-07-revenue-sales`](/blog/salesforce-winter27-07-revenue-sales/)｜下一篇 → [`salesforce-winter27-09-service`](/blog/salesforce-winter27-09-service/)

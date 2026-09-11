@@ -3,13 +3,16 @@ title: 'Winter ''27 Commerce 与 Marketing：店面智能体与活动编排'
 description: '精选 Winter ''27 Agentforce Commerce 与 Marketing Cloud Next：Shopper Agent 分析、B2B 订单失败处理、订阅定价，以及营销智能体与渠道增强。'
 pubDate: '2026-09-12'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 这一篇合并 **Commerce（现亦称 Agentforce Commerce）** 与 **Marketing**。两者都在把 Agentforce 嵌进「获客 → 成交 → 复购」链路；工程上我更关心度量口径、失败订单资源释放、旧编排兼容，以及营销侧新智能体与 API。
 
 策展阅读；B2C 还有独立的 26.x 部署时间表，请按 POD 看官方表，不要只记 Salesforce 主版本名。
-
-**系列导航**：上一篇 → [`salesforce-winter27-03-analytics-automation`](/blog/salesforce-winter27-03-analytics-automation/)｜下一篇 → [`salesforce-winter27-05-platform`](/blog/salesforce-winter27-05-platform/)
 
 <a id="toc"></a>
 ## 目录
@@ -112,7 +115,6 @@ Flow 侧与营销对象 CRUD、快速触发订单确认消息等，也在 Automa
 
 下一篇：**Platform**——Apex/API 68.0、LWC、Experience、Data 360 与开发者工具。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：店面度量与营销智能体的责任边界
 
@@ -121,8 +123,6 @@ Commerce 更名 Agentforce Commerce 之后，最大的工程风险不是名字�
 B2B 失败订单自动释放预留与失败邮件，能减少库存与客服噪音，但支付冲正不会替你自动完成：支付、库存、订单状态机要画在一张时序图上。Summer '25 前 Place Order 编排被 Order Ingestion 跳过，是典型的「旧店还能下单、后台却不按新管道走」陷阱，升级清单里应强制点名。
 
 Marketing Cloud Next 的智能体把策略、内容、潜在客户培育往前推，同时要求 Foundations 与版本组合满足。Government Cloud 不支持某些能力时，不要在统一全球方案里假设一致。Content Agent 把内容推到 CMS 后，权限与品牌工具包（Brand Center）要先成为单一事实来源，否则智能体只是更快地制造不一致。Direct Email Send API 与 Flow 完成动作会让「谁能触发发送」变得更代码化——把密钥、命名凭据与审计日志纳入与 CRM 集成同等的管控。
-
-
 
 <a id="more-mkt"></a>
 ## 营销侧我还会翻的几页
@@ -136,8 +136,6 @@ Marketing Cloud Next 的智能体把策略、内容、潜在客户培育往前�
 
 这些页不在本篇展开，但如果你的栈里有它们，请不要只读 Next 就结束。Commerce Payments 的 Stripe/Adyen 新支付方式同样要进结账回归，尤其是国际买家与失败重试路径。订单模板、失败可见性、预留释放，建议与客服知识库文章同步更新，减少「页面已改、话术未改」的工单。
 
-
-
 <a id="b2b-checklist"></a>
 ## B2B / B2C 预览检查表（精简）
 
@@ -149,10 +147,7 @@ Marketing Cloud Next 的智能体把策略、内容、潜在客户培育往前�
 - Marketing：Content/Goals/Buyer Engagement 等智能体的许可组合是否满足？CMS 发布权限是否收敛？
 - Direct Email Send API 的调用方是否走命名凭据并写审计？
 
-
 最后补一句组织协同：店面智能体的转化报表若要进经营分析，需要与 Analytics/Data 360 团队对齐「受智能体影响订单」的定义；营销智能体生成的 CMS 内容要有品牌审核队列，避免「生成即发布」。这些流程不在发布说明里，却决定 Winter '27 能力能不能安全地用于生产活动。
-
-
 
 <a id="naming-commerce"></a>
 ## 文档与培训里的命名
@@ -160,6 +155,3 @@ Marketing Cloud Next 的智能体把策略、内容、潜在客户培育往前�
 对外培训材料建议同时写「Commerce / Agentforce Commerce」「Marketing Cloud Next / Agentforce Marketing」，并注明应用内可能仍显示旧名。这样减少「我在 Setup 搜不到」的工单。B2C 部署表、B2B 失败订单行为、营销智能体许可组合，是三份应分发给不同所有者的一页纸，而不是塞进同一份 50 页 PPT。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-03-analytics-automation`](/blog/salesforce-winter27-03-analytics-automation/)｜下一篇 → [`salesforce-winter27-05-platform`](/blog/salesforce-winter27-05-platform/)

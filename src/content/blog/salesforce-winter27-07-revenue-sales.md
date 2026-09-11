@@ -3,13 +3,16 @@ title: 'Winter ''27 Revenue 与 Sales：大行报价与销售智能体'
 description: '精选 Winter ''27 Agentforce Revenue Management 与 Agentforce Sales：一万五千行报价、促销与爬坡交易、Engagement 更名、Prospecting 与 Slack 销售。'
 pubDate: '2026-09-15'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 这一篇把 **Revenue Management（收入管理）** 与 **Sales（销售）** 放一起，因为报价配置、审批与销售执行在项目里通常是同一条价值链。源说明写明：Revenue Cloud 现更名为 **Agentforce Revenue Management**，Sales Cloud 现更名为 **Agentforce Sales**；界面与文档仍可能出现旧名，沟通时建议两套名字都提一句，避免业务同事搜不到。
 
 同样是策展。Revenue 对象/API 变更极多，我只抓会影响性能架构与销售动作的部分；Sales 功能可能按月追加，请回访官方 Sales 节。
-
-**系列导航**：上一篇 → [`salesforce-winter27-06-industries`](/blog/salesforce-winter27-06-industries/)｜下一篇 → [`salesforce-winter27-08-security`](/blog/salesforce-winter27-08-security/)
 
 <a id="toc"></a>
 ## 目录
@@ -116,7 +119,6 @@ Slack 中的 Agentforce Sales（Slackbot + Go 页面 + MCP）我放在第 10 篇
 
 下一篇：**安全、身份与隐私**——OAuth 退役、简档筛选、Shield Data Detect。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：报价性能与销售智能体治理
 
@@ -126,14 +128,10 @@ Slack 中的 Agentforce Sales（Slackbot + Go 页面 + MCP）我放在第 10 篇
 
 销售侧 Engagement 更名与 Builder 分裂（新 Agent Script vs Legacy）是治理问题：谁允许建新智能体、旧智能体何时冻结、人工审核默认策略是什么。Prospecting 连接第三方数据时，字段级安全与外联合规要先于「自动研究」开关。Account Plans、Einstein Activity Capture 排除规则的微调，会影响管道卫生与活动完整度，销售运营应参与验收。S2S 与 Outlook 退役日期要写进集成路线图，避免 2027 才发现渠道同步断了。
 
-
-
 <a id="naming-map"></a>
 ## 更名对照与文档检索建议
 
 在工单与搜索里，我建议同时使用新旧关键词：Revenue Cloud / Agentforce Revenue Management；Sales Cloud / Agentforce Sales；Lead Nurturing / Engagement。权限集、报表文件夹、旧 Trailhead 模块短时间内都会混用。Forecasting、Inbox、Sales Engagement 仪表板停用等条目，请销售运营单独建「报表与插件退役」清单，避免只盯智能体而漏掉代表每天打开的首页组件。大行报价异步化之后，监控指标也应从「API 平均时延」扩展到「异步任务成功率 / 队列深度 / 文档生成失败率」。
-
-
 
 <a id="perf-cases"></a>
 ## 大行报价：我准备的五条性能用例
@@ -146,10 +144,6 @@ Slack 中的 Agentforce Sales（Slackbot + Go 页面 + MCP）我放在第 10 篇
 
 每条用例记录耗时、错误码与用户可见文案。自定义按钮若仍同步等待，本版本就应改造成轮询或平台事件驱动。
 
-
 销售智能体与收入引擎同时升级时，最大的组织风险是「代表在 Slack 或 Engagement 里推进了阶段，但报价配置规则尚未支持该产品组合」。预览环境要用真实产品目录联调，而不是用演示目录。财务、销售运营、CPQ 管理员应在同一场评审里签字。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-06-industries`](/blog/salesforce-winter27-06-industries/)｜下一篇 → [`salesforce-winter27-08-security`](/blog/salesforce-winter27-08-security/)

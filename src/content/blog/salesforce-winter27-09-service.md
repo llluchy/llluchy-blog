@@ -3,13 +3,16 @@ title: 'Winter ''27 Service：联络中心、消息与 IT Service'
 description: '精选 Winter ''27 Service：Agentforce Contact Center 语音、Partner Contact Center、Messaging、Agentforce IT Service、个案与 Knowledge。'
 pubDate: '2026-09-17'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 Service 章在源文档里同样庞大。我按运维视角拆：**联络中心（原生 AFCC vs Partner）**、**消息渠道**、**Agentforce IT Service**、以及个案/知识/自助等「代表每天点的东西」。Agentforce Voice 的深度能力在第 2 篇，这里补 Contact Center 产品化与周边。
 
 策展，非全文。Salesforce Voice (Native Telephony) 现成为 Agentforce Contact Center 的一部分，文档可能混用旧名。
-
-**系列导航**：上一篇 → [`salesforce-winter27-08-security`](/blog/salesforce-winter27-08-security/)｜下一篇 → [`salesforce-winter27-10-more`](/blog/salesforce-winter27-10-more/)
 
 <a id="toc"></a>
 ## 目录
@@ -106,7 +109,6 @@ Service Assistant 等还有月度说明——做动态计划/服务计划的团�
 
 下一篇收尾：Field Service、Headless 360、Hyperforce、Partner Cloud、Slack 等。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：服务云预览的值班视角
 
@@ -114,24 +116,17 @@ Service Assistant 等还有月度说明——做动态计划/服务计划的团�
 
 消息渠道上，WhatsApp 升级语音、模板迁移、健康状态面板，都应进运行手册。转接通知与首次响应报表是体验指标，也是外包 SLA 的弹药，尽早对口径。IT Service 与客户服务打通后，事件评论与客户沟通可能流出 IT 术语——模板与错误处理要两套语气。Knowledge Blocks 与 Similarity 能降重复，但要配编辑责任人，否则模块化内容会变成新的失控共享文档。个案翻译与评论 AI 建议，建议在双语队列试点并保留人工确认策略，尤其是受监管行业。
 
-
-
 <a id="voice-crosslink"></a>
 ## 与 Agentforce Voice 篇一起读
 
 读 Service 时请同时打开本系列 Agentforce 篇：联络中心产品名（AFCC）与 Voice 工程能力（转录、SIP、Toolkit、号码上限）是同一件事的两面。只上 AFCC 功能而不改通话记录关联，质检仍会丢智能体段；只改 SIP 头而不改运营话术，升级流程会混乱。Workforce Engagement Management 进入 CRM 后，排班「真相来源」必须写进运维文档。HR Service 进 Teams、自助门户引导式设置，则分别交给 HRIT 与数字渠道团队，服务云工程师做平台评审即可，但仍要确认许可与数据边界。
-
-
 
 <a id="channel-matrix"></a>
 ## 渠道矩阵：升级周用来对口径
 
 建议画一张表，行是渠道（AFCC 语音、BYOC、Partner/Amazon Connect、WhatsApp、Apple Messages、Web Messaging、Email），列是：号码/发送身份在哪、录音/抄送存哪、AI 功能默认开还是关、模板是否需外部审核、转接是否通知客户、报表指标负责人。升级周每天更新一列状态。这样当业务问「WhatsApp 升语音能不能开」时，你可以对着矩阵回答依赖，而不是凭记忆。IT Service 与 Knowledge 另建子表，避免和联络中心混在同一张导致噪音。
 
-
 服务预览的成功标准，我建议写成可观测指标：转接后转录完整率、WhatsApp 模板发送成功率、首次响应时长报表可用性、IT 邮件转事件自动建单准确率、Knowledge Similarity 发现的重复草稿数。功能开关打开只是起点，指标稳定才是终点。与外包联络中心合作时，把矩阵与指标写进合同附件，升级周对账会轻松很多。
-
-
 
 <a id="ai-service"></a>
 ## 面向服务的 AI 与个案工具（再补一层）
@@ -149,6 +144,3 @@ Service Assistant 等还有月度说明——做动态计划/服务计划的团�
 这些能力分散在不同许可包。预览前先在 Setup 核对你们实际拥有的附加组件，再决定试点队列，避免「发布说明有、组织里找不到按钮」的空转。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-08-security`](/blog/salesforce-winter27-08-security/)｜下一篇 → [`salesforce-winter27-10-more`](/blog/salesforce-winter27-10-more/)

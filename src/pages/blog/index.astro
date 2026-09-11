@@ -16,6 +16,8 @@ const allPosts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 const categories = [...new Set(allPosts.map(p => p.data.category || 'general'))];
+const tags = [...new Set(allPosts.flatMap((p) => p.data.tags || []))].sort((a, b) => a.localeCompare(b));
+const activeTag = Astro.url.searchParams.get('tag') || '';
 ---
 
 <!doctype html>
@@ -34,15 +36,28 @@ const categories = [...new Set(allPosts.map(p => p.data.category || 'general'))]
 					<p class="no-posts">{t('blog.noPosts')}</p>
 				) : (
 					<>
-						<div class="category-filters">
-							<button class="cat-btn active" data-category="all">{t('blog.allCategories')}</button>
+						<div class="category-filters" role="tablist" aria-label="Categories">
+							<button class="cat-btn active" data-filter-type="category" data-category="all">{t('blog.allCategories')}</button>
 							{categories.map(cat => (
-								<button class="cat-btn" data-category={cat}>{t(`blog.category.${cat}`)}</button>
+								<button class="cat-btn" data-filter-type="category" data-category={cat}>{t(`blog.category.${cat}`)}</button>
 							))}
 						</div>
+						{tags.length > 0 && (
+							<div class="tag-filters" role="tablist" aria-label="Tags">
+								<button class={`tag-btn ${activeTag ? '' : 'active'}`} data-filter-type="tag" data-tag="all">全部标签</button>
+								{tags.map((tag) => (
+									<button class={`tag-btn ${activeTag === tag ? 'active' : ''}`} data-filter-type="tag" data-tag={tag}>{tag}</button>
+								))}
+							</div>
+						)}
 						<div class="blog-grid">
 							{allPosts.map((post) => (
-								<a href={withBase('blog', post.id, '/')} class="blog-card" data-category={post.data.category || 'general'}>
+								<a
+									href={withBase('blog', post.id, '/')}
+									class="blog-card"
+									data-category={post.data.category || 'general'}
+									data-tags={(post.data.tags || []).join('|')}
+								>
 									{post.data.heroImage && (
 										<div class="blog-card-image">
 											<Image width={720} height={360} src={post.data.heroImage} alt="" />
@@ -50,6 +65,13 @@ const categories = [...new Set(allPosts.map(p => p.data.category || 'general'))]
 									)}
 									<div class="blog-card-content">
 										<span class="blog-category">{t(`blog.category.${post.data.category || 'general'}`)}</span>
+										{(post.data.tags || []).length > 0 && (
+											<div class="blog-tags">
+												{(post.data.tags || []).map((tag) => (
+													<span class="blog-tag">{tag}</span>
+												))}
+											</div>
+										)}
 										<div class="blog-date">
 											<FormattedDate date={post.data.pubDate} />
 										</div>
@@ -66,20 +88,42 @@ const categories = [...new Set(allPosts.map(p => p.data.category || 'general'))]
 		</main>
 		<Footer />
 		<script>
-			document.querySelectorAll('.cat-btn').forEach(btn => {
+			const cards = Array.from(document.querySelectorAll('.blog-card'));
+			let activeCategory = 'all';
+			let activeTag = new URLSearchParams(window.location.search).get('tag') || 'all';
+
+			function applyFilters() {
+				cards.forEach((card) => {
+					const catOk = activeCategory === 'all' || card.dataset.category === activeCategory;
+					const tags = (card.dataset.tags || '').split('|').filter(Boolean);
+					const tagOk = activeTag === 'all' || tags.includes(activeTag);
+					card.style.display = catOk && tagOk ? '' : 'none';
+				});
+			}
+
+			document.querySelectorAll('.cat-btn').forEach((btn) => {
 				btn.addEventListener('click', () => {
-					document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+					document.querySelectorAll('.cat-btn').forEach((b) => b.classList.remove('active'));
 					btn.classList.add('active');
-					const cat = btn.dataset.category;
-					document.querySelectorAll('.blog-card').forEach(card => {
-						if (cat === 'all' || card.dataset.category === cat) {
-							card.style.display = '';
-						} else {
-							card.style.display = 'none';
-						}
-					});
+					activeCategory = btn.dataset.category || 'all';
+					applyFilters();
 				});
 			});
+
+			document.querySelectorAll('.tag-btn').forEach((btn) => {
+				btn.addEventListener('click', () => {
+					document.querySelectorAll('.tag-btn').forEach((b) => b.classList.remove('active'));
+					btn.classList.add('active');
+					activeTag = btn.dataset.tag || 'all';
+					const url = new URL(window.location.href);
+					if (activeTag === 'all') url.searchParams.delete('tag');
+					else url.searchParams.set('tag', activeTag);
+					window.history.replaceState({}, '', url);
+					applyFilters();
+				});
+			});
+
+			applyFilters();
 		</script>
 	</body>
 </html>
@@ -189,5 +233,48 @@ const categories = [...new Set(allPosts.map(p => p.data.category || 'general'))]
 		color: var(--accent);
 		font-weight: 600;
 		font-size: 0.9rem;
+	}
+
+	.tag-filters {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		margin: -1rem 0 2rem;
+	}
+	.tag-btn {
+		padding: 0.35rem 0.9rem;
+		border: 1px dashed rgb(var(--border-light));
+		border-radius: var(--radius-full);
+		background: transparent;
+		color: rgb(var(--text-muted));
+		font-size: 0.8rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+	.tag-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+	.tag-btn.active {
+		background: rgba(var(--accent-rgb), 0.12);
+		color: var(--accent);
+		border-style: solid;
+		border-color: var(--accent);
+	}
+	.blog-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		margin-bottom: 0.55rem;
+	}
+	.blog-tag {
+		display: inline-block;
+		padding: 0.12rem 0.5rem;
+		border-radius: var(--radius-full);
+		font-size: 0.68rem;
+		font-weight: 600;
+		background: rgba(var(--accent-rgb), 0.08);
+		color: var(--accent);
 	}
 </style>

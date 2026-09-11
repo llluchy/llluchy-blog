@@ -3,13 +3,16 @@ title: 'Winter ''27 Platform：API 68.0、Apex、LWC 与 Experience'
 description: '精选 Winter ''27 Platform：Apex 堆与弹性限制、API 退役、LWC GA 能力、Experience 安全、Data 360、AgentExchange 与 DX/MCP 工具链。'
 pubDate: '2026-09-13'
 category: 'tech'
+tags:
+  - Salesforce
+  - Winter 27
 ---
+> **Winter '27 系列地图**：按职责找章节 → [导读树状导航](/blog/salesforce-winter27-01-overview/#series-map)  
+> 01 [导读](/blog/salesforce-winter27-01-overview/) · 02 [Agentforce](/blog/salesforce-winter27-02-agentforce/) · 03 [Analytics/Automation](/blog/salesforce-winter27-03-analytics-automation/) · 04 [Commerce/Marketing](/blog/salesforce-winter27-04-commerce-marketing/) · 05 [Platform](/blog/salesforce-winter27-05-platform/) · 06 [Industries](/blog/salesforce-winter27-06-industries/) · 07 [Revenue/Sales](/blog/salesforce-winter27-07-revenue-sales/) · 08 [安全](/blog/salesforce-winter27-08-security/) · 09 [Service](/blog/salesforce-winter27-09-service/) · 10 [其他](/blog/salesforce-winter27-10-more/)
 
 Winter '27 把定制化、部署、开发、Experience Cloud、移动端与 Salesforce CMS 都收进了 **Platform** 大章。对我这种既写 Apex/LWC、又管 CI 与 Experience 站点的人，这是「一章读完底座」的版本。下面只挑高冲击项；对象/API 全量变更表请直接查官方「面向开发人员的新增与变更项」。
 
 **策展，非全文。** Data 360 变更可高达每月一次，Winter '27 相关常列在 2026 年 10 月下——以官网当月页为准。
-
-**系列导航**：上一篇 → [`salesforce-winter27-04-commerce-marketing`](/blog/salesforce-winter27-04-commerce-marketing/)｜下一篇 → [`salesforce-winter27-06-industries`](/blog/salesforce-winter27-06-industries/)
 
 <a id="toc"></a>
 ## 目录
@@ -133,7 +136,6 @@ Permissions and Sharing：转移记录所有权时可选择是否保留手动共
 
 下一篇：Industries 精选——只挑跨行业影响面大的，不穷举。
 
-
 <a id="engineer-notes"></a>
 ## 工程师补充：平台底座的「静默破坏」清单
 
@@ -149,14 +151,10 @@ Platform 章最容易被业务略过，却最容易在升级周让 CI 变红。�
 
 **工具链：** CLI、DX MCP、Vibes 地理路由与 Flex Credit；Functions 停售意味着剩余函数要有迁出史诗。Data 360 名称变更与 10 月互动时间线，要让报表消费者提前改依赖。
 
-
-
 <a id="general-setup"></a>
 ## 通用设置与移动端顺手记
 
 Platform 里还有一批「不像平台、但会改变日常操作」的点：列表视图内联编辑限制放宽；字段历史跟踪能力对用户侧增强；动态高亮面板可加关注按钮；Globalization 的 ICU 区域格式发布更新会改日期时间货币展示；移动端会后语音备注与 AI 建议后续步骤、Mobile Publisher 原生 Agentforce 入口。CMS Brand 类型与批量删除、CMS Base 包升级改善 AI 搜索，则影响内容运营。把这些放进「管理员每周清单」比放进开发史诗更合适，但开发仍要知道 ICU 与内联编辑可能打歪依赖格式化字符串的测试快照。
-
-
 
 <a id="ci-notes"></a>
 ## CI / 仓库我会改的几处
@@ -168,10 +166,6 @@ Platform 里还有一批「不像平台、但会改变日常操作」的点：�
 - Metadata 拉取包含 FlowSettings 等新组织首选项字段，避免环境漂移。
 - 若使用 Functions，创建迁出史诗并冻结新功能开发。
 
-
 若你们维护第二代托管包，请额外关注：智能体新元数据仅 2GP 支持、GraphQL 访客访问可控、以及托管包匿名 Apex 执行相关发布更新。ISV 安全审查材料应同步更新，避免客户在强制日之后才发现诊断脚本失效。
 
 
-***
-
-**系列导航**：上一篇 → [`salesforce-winter27-04-commerce-marketing`](/blog/salesforce-winter27-04-commerce-marketing/)｜下一篇 → [`salesforce-winter27-06-industries`](/blog/salesforce-winter27-06-industries/)
